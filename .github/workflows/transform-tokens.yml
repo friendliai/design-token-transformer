@@ -43,7 +43,7 @@ jobs:
         uses: peter-evans/create-pull-request@v5
         with:
           commit-message: ${{ github.event.client_payload.commitMessage || 'Tokens updated' }}
-          title: "Design tokens updated ${{github.run_number}}"
+          title: "Design tokens updated #${{github.run_id}}"
           body: "Design tokens have been updated via Figma and need to be reviewed."
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
