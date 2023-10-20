@@ -25,6 +25,30 @@
         "900": "#132c63ff",
         "000": "#eaeffbff"
       },
+      "graph": {
+        "plane": {
+          "100": "#0d0b60ff",
+          "200": "#2a5ea6ff",
+          "300": "#e05aa7ff",
+          "400": "#b9fdfeff",
+          "500": "#7fcde4ff",
+          "600": "#29a5a5ff",
+          "700": "#ea9b37ff",
+          "800": "#9cf480ff",
+          "900": "#af94f5ff"
+        },
+        "line": {
+          "100": "#e75b5cff",
+          "200": "#265c5cff",
+          "300": "#29a5a5ff",
+          "400": "#8b67ecff",
+          "500": "#21a71eff",
+          "600": "#854c17ff",
+          "700": "#e05aa7ff",
+          "800": "#9b9615ff",
+          "900": "#5f8ee9ff"
+        }
+      },
       "red": {
         "100": "#f4ccccff",
         "200": "#eca3a3ff",
@@ -99,81 +123,161 @@
       },
       "white": "#ffffffff",
       "black": "#101723ff"
-    },
-    "data": {
-      "chart1": {
-        "100": "#0d0b60ff",
-        "200": "#2a5ea6ff",
-        "300": "#e05aa7ff",
-        "400": "#b9fdfeff",
-        "500": "#7fcde4ff",
-        "600": "#29a5a5ff",
-        "700": "#ea9b37ff",
-        "800": "#9cf480ff",
-        "900": "#af94f5ff"
-      },
-      "chart2": {
-        "100": "#e75b5cff",
-        "200": "#265c5cff",
-        "300": "#29a5a5ff",
-        "400": "#8b67ecff",
-        "500": "#21a71eff",
-        "600": "#854c17ff",
-        "700": "#e05aa7ff",
-        "800": "#9b9615ff",
-        "900": "#5f8ee9ff"
-      }
     }
   },
   "color": {
-    "text": {
-      "default": "#243b53ff",
-      "subtle": "#829ab1ff",
-      "link": "#1e469bff",
-      "strong": "#102a43ff",
-      "error": "#e37979ff",
-      "disabled": "#829ab1ff",
-      "white": "#ffffffff"
-    },
-    "surface": {
-      "page": "#f8f9fcff",
-      "card": "#f0f4f8ff",
-      "base": "#ffffffff",
-      "error": "#ffecec"
-    },
-    "borders": {
-      "default": "#d9e2ecff",
-      "hover, focus": "#2453baff"
-    },
-    "icons": {
-      "strong": "#243b53ff",
-      "deafult": "#829ab1ff",
-      "subtle": "#829ab1ff",
-      "disabled": "#d9e2ecff",
-      "white": "#ffffffff"
-    },
-    "buttons": {
-      "primary": {
-        "base": "#2453baff",
-        "hover": "#507ee1ff",
-        "focus": "#1e469bff"
+    "bg": {
+      "neutral": {
+        "default": {
+          "base": "#ffffffff",
+          "hover": "#f8f9fcff",
+          "press": "#f0f4f8ff"
+        },
+        "strong": {
+          "base": "#102a43ff"
+        },
+        "subtle": {
+          "base": "#f8f9fcff",
+          "hover": "#f0f4f8ff",
+          "press": "#e5ebf2ff"
+        },
+        "disable": {
+          "base": "#d9e2ecff"
+        }
       },
-      "secondary": {
-        "base": "#829ab1ff",
-        "hover": "#829ab1ff",
-        "focus": "#243b53ff"
+      "cloudblue": {
+        "default": {
+          "base": "#eaeffbff",
+          "hover": "#ccd9f6ff",
+          "press": "#a3bbf0ff"
+        },
+        "strong": {
+          "base": "#2a62dbff",
+          "hover": "#2453baff",
+          "press": "#1e469bff"
+        }
       },
-      "disabled": {
-        "disabled": "#d9e2ecff"
+      "containerviolet": {
+        "default": {
+          "base": "#f0effcff",
+          "hover": "#dad8f8ff",
+          "press": "#bdb8f3ff"
+        },
+        "strong": {
+          "base": "#655be2ff",
+          "hover": "#564dc0ff",
+          "press": "#4841a0ff"
+        }
       },
-      "error": {
-        "base": "#e37979ff",
-        "hover": "#eca3a3ff",
-        "focus": "#db5050ff"
+      "apigreen": {
+        "default": {
+          "base": "#e8f1efff",
+          "subtle": "#c7ddd9ff",
+          "press": "#9ac2bbff"
+        },
+        "strong": {
+          "base": "#157261ff",
+          "hover": "#126152ff",
+          "press": "#0f5145ff"
+        }
+      },
+      "success": {
+        "default": {
+          "hover": "#c5f2e0ff",
+          "base": "#e7f9f2ff",
+          "press": "#98e7c8ff"
+        },
+        "strong": {
+          "base": "#0da96cff",
+          "hover": "#0b8d5aff",
+          "press": "#097148ff"
+        }
+      },
+      "warning": {
+        "default": {
+          "base": "#fff8e8ff",
+          "hover": "#ffefc7ff",
+          "press": "#fee39bff"
+        },
+        "strong": {
+          "base": "#d7a114ff",
+          "hover": "#b48610ff",
+          "press": "#906c0dff"
+        }
+      },
+      "danger": {
+        "default": {
+          "base": "#fbeaeaff",
+          "hover": "#f4ccccff",
+          "press": "#eca3a3ff"
+        },
+        "strong": {
+          "base": "#d32a2aff",
+          "hover": "#b32424ff",
+          "press": "#961e1eff"
+        }
       }
     },
-    "brand": {
-      "primary": "#1e469bff"
+    "fg": {
+      "neutral": {
+        "default": "#486581ff",
+        "subtle": "#829ab1ff",
+        "strong": "#102a43ff",
+        "disable": "#bcccdcff"
+      },
+      "cloudblue": {
+        "base": "#2a62dbff",
+        "hover": "#2453baff",
+        "press": "#1e469bff"
+      },
+      "containerviolet": {
+        "base": "#655be2ff",
+        "hover": "#564dc0ff",
+        "press": "#4841a0ff"
+      },
+      "apigreen": {
+        "base": "#157261ff",
+        "hover": "#126152ff",
+        "press": "#0f5145ff"
+      },
+      "success": {
+        "base": "#0da96cff",
+        "hover": "#0b8d5aff",
+        "press": "#097148ff"
+      },
+      "warning": {
+        "base": "#d7a114ff",
+        "hover": "#b48610ff",
+        "press": "#906c0dff"
+      },
+      "danger": {
+        "base": "#d32a2aff",
+        "hover": "#b32424ff",
+        "press": "#961e1eff"
+      }
+    },
+    "border": {
+      "neutral": {
+        "default": "#d9e2ecff"
+      },
+      "cloudblue": {
+        "base": "#2a62dbff"
+      },
+      "containerviolet": {
+        "default": "#655be2ff"
+      },
+      "apigreen": {
+        "default": "#157261ff"
+      },
+      "success": {
+        "default": "#0da96cff"
+      },
+      "warning": {
+        "default": "#d7a114ff"
+      },
+      "danger": {
+        "default": "#d32a2aff"
+      }
     }
   }
 }
