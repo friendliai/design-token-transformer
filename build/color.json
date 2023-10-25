@@ -14,7 +14,7 @@
         "000": "#f8f9fcff"
       },
       "blue": {
-        "100": "#ccd9f6ff",
+        "100": "#eaeffbff",
         "200": "#a3bbf0ff",
         "300": "#799ce8ff",
         "400": "#507ee1ff",
@@ -23,7 +23,7 @@
         "700": "#1e469bff",
         "800": "#18387dff",
         "900": "#132c63ff",
-        "000": "#eaeffbff"
+        "000": "#f1f5ffff"
       },
       "graph": {
         "plane": {
@@ -59,7 +59,7 @@
         "700": "#961e1eff",
         "800": "#781818ff",
         "900": "#5f1313ff",
-        "000": "#fbeaeaff"
+        "000": "#fff4f4ff"
       },
       "green": {
         "100": "#c7ddd9ff",
@@ -107,7 +107,7 @@
         "700": "#4841a0ff",
         "800": "#3a3481ff",
         "900": "#2d2966ff",
-        "000": "#f0effcff"
+        "000": "#f4f3ffff"
       },
       "rose": {
         "100": "#fbd5e5ff",
@@ -147,8 +147,8 @@
       },
       "cloudblue": {
         "default": {
-          "base": "#eaeffbff",
-          "hover": "#ccd9f6ff",
+          "base": "#f1f5ffff",
+          "hover": "#eaeffbff",
           "press": "#a3bbf0ff"
         },
         "strong": {
@@ -159,7 +159,7 @@
       },
       "containerviolet": {
         "default": {
-          "base": "#f0effcff",
+          "base": "#f4f3ffff",
           "hover": "#dad8f8ff",
           "press": "#bdb8f3ff"
         },
@@ -207,7 +207,7 @@
       },
       "danger": {
         "default": {
-          "base": "#fbeaeaff",
+          "base": "#fff4f4ff",
           "hover": "#f4ccccff",
           "press": "#eca3a3ff"
         },
@@ -254,14 +254,15 @@
         "base": "#d32a2aff",
         "hover": "#b32424ff",
         "press": "#961e1eff"
-      }
+      },
+      "white": "#ffffffff"
     },
     "border": {
       "neutral": {
         "default": "#d9e2ecff"
       },
       "cloudblue": {
-        "base": "#2a62dbff"
+        "default": "#2a62dbff"
       },
       "containerviolet": {
         "default": "#655be2ff"
