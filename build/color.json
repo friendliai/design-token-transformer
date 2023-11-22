@@ -50,7 +50,7 @@
         }
       },
       "red": {
-        "100": "#f4ccccff",
+        "100": "#ffd7d7ff",
         "200": "#eca3a3ff",
         "300": "#e37979ff",
         "400": "#db5050ff",
@@ -59,7 +59,7 @@
         "700": "#961e1eff",
         "800": "#781818ff",
         "900": "#5f1313ff",
-        "000": "#fff4f4ff"
+        "000": "#ffededff"
       },
       "green": {
         "100": "#c7ddd9ff",
@@ -133,9 +133,6 @@
           "hover": "#f8f9fcff",
           "press": "#f0f4f8ff"
         },
-        "strong": {
-          "base": "#102a43ff"
-        },
         "subtle": {
           "base": "#f8f9fcff",
           "hover": "#f0f4f8ff",
@@ -143,6 +140,15 @@
         },
         "disable": {
           "base": "#d9e2ecff"
+        },
+        "strong": {
+          "base": "#243b53ff",
+          "hover": "#102a43ff"
+        },
+        "shade": {
+          "base": "#f0f4f8ff",
+          "hover": "#e5ebf2ff",
+          "press": "#d9e2ecff"
         }
       },
       "cloudblue": {
@@ -157,7 +163,7 @@
           "press": "#1e469bff"
         }
       },
-      "containerviolet": {
+      "apiviolet": {
         "default": {
           "base": "#f4f3ffff",
           "hover": "#dad8f8ff",
@@ -169,7 +175,7 @@
           "press": "#4841a0ff"
         }
       },
-      "apigreen": {
+      "containergreen": {
         "default": {
           "base": "#e8f1efff",
           "subtle": "#c7ddd9ff",
@@ -207,8 +213,8 @@
       },
       "danger": {
         "default": {
-          "base": "#fff4f4ff",
-          "hover": "#f4ccccff",
+          "base": "#ffededff",
+          "hover": "#ffd7d7ff",
           "press": "#eca3a3ff"
         },
         "strong": {
@@ -226,11 +232,14 @@
         "disable": "#bcccdcff"
       },
       "cloudblue": {
-        "base": "#2a62dbff",
-        "hover": "#2453baff",
-        "press": "#1e469bff"
+        "default": {
+          "base": "#2a62dbff",
+          "hover": "#2453baff",
+          "press": "#1e469bff"
+        },
+        "strong": "#132c63ff"
       },
-      "containerviolet": {
+      "apiviolet": {
         "base": "#655be2ff",
         "hover": "#564dc0ff",
         "press": "#4841a0ff"
@@ -240,31 +249,42 @@
         "hover": "#126152ff",
         "press": "#0f5145ff"
       },
-      "success": {
-        "base": "#0da96cff",
-        "hover": "#0b8d5aff",
-        "press": "#097148ff"
-      },
       "warning": {
-        "base": "#d7a114ff",
-        "hover": "#b48610ff",
-        "press": "#906c0dff"
+        "strong": "#72550aff",
+        "default": {
+          "base": "#d7a114ff",
+          "hover": "#b48610ff",
+          "press": "#906c0dff"
+        }
       },
+      "white": "#ffffffff",
       "danger": {
-        "base": "#d32a2aff",
-        "hover": "#b32424ff",
-        "press": "#961e1eff"
+        "default": {
+          "base": "#d32a2aff",
+          "hover": "#b32424ff",
+          "press": "#961e1eff"
+        },
+        "strong": "#961e1eff"
       },
-      "white": "#ffffffff"
+      "success": {
+        "default": {
+          "base": "#0da96cff",
+          "hover": "#0b8d5aff",
+          "press": "#097148ff"
+        },
+        "strong": "#075a39ff"
+      }
     },
     "border": {
       "neutral": {
-        "default": "#d9e2ecff"
+        "default": "#d9e2ecff",
+        "strong": "#102a43ff",
+        "subtle": "#486581ff"
       },
       "cloudblue": {
         "default": "#2a62dbff"
       },
-      "containerviolet": {
+      "apiviolet": {
         "default": "#655be2ff"
       },
       "apigreen": {
