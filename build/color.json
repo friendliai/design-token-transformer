@@ -240,9 +240,12 @@
         "strong": "#132c63ff"
       },
       "apiviolet": {
-        "base": "#655be2ff",
-        "hover": "#564dc0ff",
-        "press": "#4841a0ff"
+        "default": {
+          "base": "#655be2ff",
+          "hover": "#564dc0ff",
+          "press": "#4841a0ff"
+        },
+        "strong": "#2d2966ff"
       },
       "apigreen": {
         "base": "#157261ff",
