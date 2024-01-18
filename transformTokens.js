@@ -9,7 +9,7 @@ const validTypes = [
   "custom-radius",
 ];
 
-const fontPaths = ["articulat", "title", "mono", "body"];
+const fontPaths = ["saans", "title", "mono", "body"];
 
 const colorTypes = ["color", "custom-gfontPathsradient", "custom-shadow"];
 
