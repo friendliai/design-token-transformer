@@ -83,7 +83,7 @@
     "typography-title-xl": {
       "fontSize": "1.5rem",
       "textDecoration": "none",
-      "fontFamily": "Inter",
+      "fontFamily": "InterVariable",
       "fontWeight": 500,
       "fontStyle": "normal",
       "fontStretch": "normal",
@@ -96,7 +96,7 @@
     "typography-title-lg": {
       "fontSize": "1.25rem",
       "textDecoration": "none",
-      "fontFamily": "Inter",
+      "fontFamily": "InterVariable",
       "fontWeight": 500,
       "fontStyle": "normal",
       "fontStretch": "normal",
@@ -109,7 +109,7 @@
     "typography-title-md": {
       "fontSize": "1.125rem",
       "textDecoration": "none",
-      "fontFamily": "Inter",
+      "fontFamily": "InterVariable",
       "fontWeight": 500,
       "fontStyle": "normal",
       "fontStretch": "normal",
@@ -122,7 +122,7 @@
     "typography-title-sm": {
       "fontSize": "1rem",
       "textDecoration": "none",
-      "fontFamily": "Inter",
+      "fontFamily": "InterVariable",
       "fontWeight": 500,
       "fontStyle": "normal",
       "fontStretch": "normal",
@@ -135,7 +135,7 @@
     "typography-title-xs": {
       "fontSize": "0.875rem",
       "textDecoration": "none",
-      "fontFamily": "Inter",
+      "fontFamily": "InterVariable",
       "fontWeight": 500,
       "fontStyle": "normal",
       "fontStretch": "normal",
@@ -148,7 +148,7 @@
     "typography-title-2xs": {
       "fontSize": "0.75rem",
       "textDecoration": "none",
-      "fontFamily": "Inter",
+      "fontFamily": "InterVariable",
       "fontWeight": 500,
       "fontStyle": "normal",
       "fontStretch": "normal",
@@ -163,8 +163,8 @@
     "typography-body-lg": {
       "fontSize": "1rem",
       "textDecoration": "none",
-      "fontFamily": "Inter",
-      "fontWeight": 400,
+      "fontFamily": "InterVariable",
+      "fontWeight": 430,
       "fontStyle": "normal",
       "fontStretch": "normal",
       "letterSpacing": "0rem",
@@ -176,8 +176,8 @@
     "typography-body-md": {
       "fontSize": "0.875rem",
       "textDecoration": "none",
-      "fontFamily": "Inter",
-      "fontWeight": 400,
+      "fontFamily": "InterVariable",
+      "fontWeight": 430,
       "fontStyle": "normal",
       "fontStretch": "normal",
       "letterSpacing": "0rem",
@@ -189,8 +189,8 @@
     "typography-body-sm": {
       "fontSize": "0.75rem",
       "textDecoration": "none",
-      "fontFamily": "Inter",
-      "fontWeight": 400,
+      "fontFamily": "InterVariable",
+      "fontWeight": 430,
       "fontStyle": "normal",
       "fontStretch": "normal",
       "letterSpacing": "0rem",
@@ -202,8 +202,8 @@
     "typography-body-xs": {
       "fontSize": "0.625rem",
       "textDecoration": "none",
-      "fontFamily": "Inter",
-      "fontWeight": 400,
+      "fontFamily": "InterVariable",
+      "fontWeight": 430,
       "fontStyle": "normal",
       "fontStretch": "normal",
       "letterSpacing": "0rem",

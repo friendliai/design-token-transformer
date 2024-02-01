@@ -2,25 +2,25 @@ const StyleDictionary = require("style-dictionary");
 
 const validTypes = [
   "dimension",
-  "string",
-  "number",
   "custom-spacing",
-  "custom-fontStyle",
   "custom-radius",
+  "custom-shadow",
 ];
-
-const fontPaths = ["saans", "title", "mono", "body"];
-
-const colorTypes = ["color", "custom-gfontPathsradient", "custom-shadow"];
 
 StyleDictionary.registerFilter({
   name: "validToken",
   matcher(token) {
     return (
-      validTypes.includes(token.type) && !fontPaths.includes(token.path[0])
+      validTypes.includes(token.type) &&
+      !fontPaths.includes(token.path[0]) &&
+      token.path[0] !== "typography" &&
+      token.path[0] !== "core"
     );
   },
 });
+
+const colorTypes = ["color", "custom-gfontPathsradient"];
+const colorPaths = ["bg", "fg", "border"];
 
 StyleDictionary.registerFilter({
   name: "colorToken",
@@ -28,6 +28,8 @@ StyleDictionary.registerFilter({
     return colorTypes.includes(token.type);
   },
 });
+
+const fontPaths = ["saans", "title", "mono", "body"];
 
 StyleDictionary.registerFilter({
   name: "typoToken",
@@ -52,9 +54,31 @@ const StyleDictionaryExtended = StyleDictionary.extend({
         return `${Number(token.original.value) / 16}rem`;
       },
     },
+    interToVariable: {
+      type: "value",
+      matcher(token) {
+        return token.value === "Inter";
+      },
+      transformer() {
+        return "InterVariable";
+      },
+    },
+    regularTo430: {
+      type: "value",
+      matcher(token) {
+        return token.value === 400 && token.path[0] === "body";
+      },
+      transformer() {
+        return 430;
+      },
+    },
   },
   transformGroup: {
-    "custom/json": StyleDictionary.transformGroup.css.concat(["size/rem"]),
+    "custom/json": StyleDictionary.transformGroup.css.concat([
+      "size/rem",
+      "interToVariable",
+      "regularTo430",
+    ]),
   },
   platforms: {
     json: {
