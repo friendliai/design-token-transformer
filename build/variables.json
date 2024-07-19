@@ -1,23 +1,4 @@
 {
-  "layout": {
-    "2xs": "0.75rem",
-    "xs": "1rem",
-    "sm": "1.25rem",
-    "md": "1.5rem",
-    "lg": "2rem",
-    "xl": "2.5rem",
-    "2xl": "3.5rem",
-    "3xl": "4rem",
-    "3xs": "0.5rem",
-    "4xs": "0.25rem",
-    "4xl": "5rem"
-  },
-  "radius": {
-    "sm": "0.25rem",
-    "md": "0.5rem",
-    "lg": "0.75rem",
-    "pill": "22.5rem"
-  },
   "effect": {
     "shadow-lg": {
       "shadowType": "dropShadow",
@@ -75,5 +56,24 @@
       "offsetY": 0,
       "spread": 0
     }
+  },
+  "layout": {
+    "2xs": "0.75rem",
+    "xs": "1rem",
+    "sm": "1.25rem",
+    "md": "1.5rem",
+    "lg": "2rem",
+    "xl": "2.5rem",
+    "2xl": "3.5rem",
+    "3xl": "4rem",
+    "3xs": "0.5rem",
+    "4xs": "0.25rem",
+    "4xl": "5rem"
+  },
+  "radius": {
+    "sm": "0.25rem",
+    "md": "0.5rem",
+    "lg": "0.75rem",
+    "pill": "22.5rem"
   }
 }

@@ -20,7 +20,6 @@ StyleDictionary.registerFilter({
 });
 
 const colorTypes = ["color", "custom-gfontPathsradient"];
-const colorPaths = ["bg", "fg", "border"];
 
 StyleDictionary.registerFilter({
   name: "colorToken",
