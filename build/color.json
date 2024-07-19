@@ -7,15 +7,15 @@
         "300": "#d9e2ecff",
         "400": "#bcccdcff",
         "500": "#9fb3c8ff",
-        "600": "#829ab1ff",
+        "600": "#7490acff",
         "700": "#486581ff",
         "800": "#243b53ff",
         "900": "#102a43ff",
         "000": "#f8f9fcff"
       },
       "blue": {
-        "100": "#eaeffbff",
-        "200": "#a3bbf0ff",
+        "100": "#d8e3fcff",
+        "200": "#b2c9fbff",
         "300": "#799ce8ff",
         "400": "#507ee1ff",
         "500": "#2a62dbff",
@@ -154,8 +154,8 @@
       "cloudblue": {
         "default": {
           "base": "#f1f5ffff",
-          "hover": "#eaeffbff",
-          "press": "#a3bbf0ff"
+          "hover": "#d8e3fcff",
+          "press": "#b2c9fbff"
         },
         "strong": {
           "base": "#2a62dbff",
@@ -227,7 +227,7 @@
     "fg": {
       "neutral": {
         "default": "#486581ff",
-        "subtle": "#829ab1ff",
+        "subtle": "#7490acff",
         "strong": "#102a43ff",
         "disable": "#bcccdcff"
       },
