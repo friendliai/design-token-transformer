@@ -18,7 +18,7 @@ jobs:
       # if the folder named "tokens" does not exist, create it
       - name: mkdir "tokens" directory
         # change tokens here (and in line 32) if you want to use a differently named folder
-        run: "mkdir -p tokens"
+        run: 'mkdir -p tokens'
       # this creates a json file from the stringified json from the request body
       - name: create json from request body
         id: create-json
@@ -29,23 +29,16 @@ jobs:
           # it uses the json string that was send as the tokens parameter
           json: ${{ github.event.client_payload.tokens }}
           # it uses the directory named "tokens" to store this json file (change this if you changed it above to use a different folder)
-          dir: "tokens"
-      # we now initialize node to run amazon style dictionary to compile the tokens
-      - name: Use Node.js 18
-        uses: actions/setup-node@v3
-        with:
-          node-version: 18
-      # We now run npm i to install all dependencies and run the "transfrom" script that is defined in the package.json (change this if you need to)
-      - name: Transform design tokens
-        run: "npm i && npm run transform-tokens"
+          dir: 'tokens'
+
       # We now create a pull request
       - name: Create PR
         uses: peter-evans/create-pull-request@v5
         with:
           commit-message: ${{ github.event.client_payload.commitMessage || 'Tokens updated' }}
-          title: "Design tokens updated #${{github.run_id}}"
-          body: "Design tokens have been updated via Figma and need to be reviewed."
+          title: 'Design tokens updated #${{github.run_id}}'
+          body: 'Design tokens have been updated via Figma and need to be reviewed.'
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           # this parameter is optional and defaults to master but I am using main
-          BRANCH_NAME: "main"
+          BRANCH_NAME: 'main'
