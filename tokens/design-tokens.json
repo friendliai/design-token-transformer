@@ -143,7 +143,7 @@
           },
           "900": {
             "type": "color",
-            "value": "#102a43ff",
+            "value": "#0a101aff",
             "blendMode": "normal"
           },
           "000": {
@@ -624,7 +624,7 @@
         },
         "black": {
           "type": "color",
-          "value": "#101723ff",
+          "value": "#0a101aff",
           "blendMode": "normal"
         }
       },
@@ -696,12 +696,12 @@
             "base": {
               "description": "",
               "type": "color",
-              "value": "{core.color.grey.800}"
+              "value": "{core.color.grey.900}"
             },
             "hover": {
               "description": "",
               "type": "color",
-              "value": "{core.color.grey.900}"
+              "value": "{core.color.grey.800}"
             }
           },
           "shade": {
