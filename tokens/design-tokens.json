@@ -100,7 +100,7 @@
   "variables": {
     "core": {
       "color": {
-        "grey": {
+        "gray": {
           "100": {
             "type": "color",
             "value": "#f0f4f8ff",
@@ -660,65 +660,65 @@
             "hover": {
               "description": "",
               "type": "color",
-              "value": "{core.color.grey.000}"
+              "value": "{core.color.gray.000}"
             },
             "press": {
               "description": "",
               "type": "color",
-              "value": "{core.color.grey.100}"
+              "value": "{core.color.gray.100}"
             }
           },
           "subtle": {
             "base": {
               "description": "",
               "type": "color",
-              "value": "{core.color.grey.000}"
+              "value": "{core.color.gray.000}"
             },
             "hover": {
               "description": "",
               "type": "color",
-              "value": "{core.color.grey.100}"
+              "value": "{core.color.gray.100}"
             },
             "press": {
               "description": "",
               "type": "color",
-              "value": "{core.color.grey.200}"
+              "value": "{core.color.gray.200}"
             }
           },
           "disable": {
             "base": {
               "description": "",
               "type": "color",
-              "value": "{core.color.grey.300}"
+              "value": "{core.color.gray.300}"
             }
           },
           "strong": {
             "base": {
               "description": "",
               "type": "color",
-              "value": "{core.color.grey.900}"
+              "value": "{core.color.gray.900}"
             },
             "hover": {
               "description": "",
               "type": "color",
-              "value": "{core.color.grey.800}"
+              "value": "{core.color.gray.800}"
             }
           },
           "shade": {
             "base": {
               "description": "",
               "type": "color",
-              "value": "{core.color.grey.100}"
+              "value": "{core.color.gray.100}"
             },
             "hover": {
               "description": "",
               "type": "color",
-              "value": "{core.color.grey.200}"
+              "value": "{core.color.gray.200}"
             },
             "press": {
               "description": "",
               "type": "color",
-              "value": "{core.color.grey.300}"
+              "value": "{core.color.gray.300}"
             }
           }
         },
@@ -951,32 +951,32 @@
           "default": {
             "description": "",
             "type": "color",
-            "value": "{core.color.grey.700}",
+            "value": "{core.color.gray.700}",
             "base": {
               "description": "",
               "type": "color",
-              "value": "{core.color.grey.700}"
+              "value": "{core.color.gray.700}"
             },
             "hover": {
               "description": "",
               "type": "color",
-              "value": "{core.color.grey.900}"
+              "value": "{core.color.gray.900}"
             }
           },
           "subtle": {
             "description": "",
             "type": "color",
-            "value": "{core.color.grey.600}"
+            "value": "{core.color.gray.600}"
           },
           "strong": {
             "description": "",
             "type": "color",
-            "value": "{core.color.grey.900}"
+            "value": "{core.color.gray.900}"
           },
           "disable": {
             "description": "",
             "type": "color",
-            "value": "{core.color.grey.400}"
+            "value": "{core.color.gray.400}"
           }
         },
         "cloudblue": {
@@ -1134,17 +1134,17 @@
           "default": {
             "description": "",
             "type": "color",
-            "value": "{core.color.grey.300}"
+            "value": "{core.color.gray.300}"
           },
           "strong": {
             "description": "",
             "type": "color",
-            "value": "{core.color.grey.900}"
+            "value": "{core.color.gray.900}"
           },
           "subtle": {
             "description": "",
             "type": "color",
-            "value": "{core.color.grey.700}"
+            "value": "{core.color.gray.700}"
           }
         },
         "cloudblue": {
