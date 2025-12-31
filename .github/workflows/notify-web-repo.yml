@@ -1,0 +1,194 @@
+name: Notify Web Repo on Token Update
+
+on:
+  pull_request:
+    types: [closed]
+    branches:
+      - main
+    paths:
+      - 'tokens/**/*.json'
+
+  workflow_dispatch:
+    inputs:
+      force_notify:
+        description: 'Force notification to web repo'
+        required: false
+        default: 'false'
+        type: boolean
+
+env:
+  TARGET_REPO_OWNER: friendliai
+  TARGET_REPO_NAME: web
+  WORKFLOW_FILE: sync-design-tokens.yaml
+
+jobs:
+  notify-web-repo:
+    if: github.event.pull_request.merged || github.event_name == 'workflow_dispatch'
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Extract PR metadata
+        id: pr-metadata
+        if: github.event_name == 'pull_request'
+        run: |
+          cat >> "$GITHUB_OUTPUT" <<EOF
+          pr_number=${{ github.event.pull_request.number }}
+          pr_title=${{ github.event.pull_request.title }}
+          pr_user=${{ github.event.pull_request.user.login }}
+          EOF
+
+      - name: Trigger web repository sync
+        id: trigger
+        uses: actions/github-script@v7
+        env:
+          GITHUB_TOKEN: ${{ secrets.DESIGN_TOKENS_SYNC_PAT }}
+        with:
+          github-token: ${{ secrets.DESIGN_TOKENS_SYNC_PAT }}
+          result-encoding: string
+          script: |
+            const { TARGET_REPO_OWNER, TARGET_REPO_NAME } = process.env;
+            const isPR = context.eventName === 'pull_request';
+
+            // Build payload with only necessary data
+            const payload = {
+              requester: isPR ? '${{ steps.pr-metadata.outputs.pr_user }}' : context.actor,
+              source: context.repo.repo,
+              trigger_type: context.eventName === 'workflow_dispatch' ? 'manual' : 'automatic',
+              timestamp: new Date().toISOString(),
+              ...(isPR && {
+                pr_number: '${{ steps.pr-metadata.outputs.pr_number }}',
+                pr_title: '${{ steps.pr-metadata.outputs.pr_title }}',
+                commit_sha: context.sha,
+                commit_url: `${context.serverUrl}/${context.repo.owner}/${context.repo.repo}/commit/${context.sha}`
+              })
+            };
+
+            core.info('Triggering web repository sync...');
+            core.info(`Target: ${TARGET_REPO_OWNER}/${TARGET_REPO_NAME}`);
+            core.debug(`Payload: ${JSON.stringify(payload, null, 2)}`);
+
+            try {
+              await github.rest.repos.createDispatchEvent({
+                owner: TARGET_REPO_OWNER,
+                repo: TARGET_REPO_NAME,
+                event_type: 'design-tokens-updated',
+                client_payload: payload
+              });
+
+              core.info('✅ Successfully triggered web repo sync');
+              return 'success';
+            } catch (error) {
+              core.error(`Failed to trigger web repo: ${error.message}`);
+
+              // Check for common error patterns
+              if (error.status === 404) {
+                core.error('Repository not found or PAT lacks access');
+              } else if (error.status === 401 || error.status === 403) {
+                core.error('Authentication failed - check DESIGN_TOKENS_SYNC_PAT');
+              }
+
+              throw error;
+            }
+
+      - name: Add success comment to PR
+        if: |
+          github.event_name == 'pull_request' &&
+          steps.trigger.outputs.result == 'success'
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const { TARGET_REPO_OWNER, TARGET_REPO_NAME, WORKFLOW_FILE } = process.env;
+            const baseUrl = `https://github.com/${TARGET_REPO_OWNER}/${TARGET_REPO_NAME}`;
+
+            const comment = [
+              '## 🚀 Design Tokens Sync Triggered',
+              '',
+              `A PR will be automatically created in the [${TARGET_REPO_NAME} repository](${baseUrl}) with the updated design tokens.`,
+              '',
+              '### Track Progress',
+              `- [View Actions](${baseUrl}/actions/workflows/${WORKFLOW_FILE})`,
+              `- [View PRs](${baseUrl}/pulls?q=is%3Apr+is%3Aopen+label%3Adesign-tokens)`,
+              '',
+              '_This is an automated message from the design tokens workflow._'
+            ].join('\n');
+
+            await github.rest.issues.createComment({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: context.payload.pull_request.number,
+              body: comment
+            });
+
+      - name: Create failure issue
+        if: failure() && steps.trigger.conclusion == 'failure'
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const { TARGET_REPO_OWNER, TARGET_REPO_NAME, WORKFLOW_FILE } = process.env;
+            const isPR = context.eventName === 'pull_request';
+
+            const sections = {
+              header: [
+                '## Workflow Details',
+                `**Run:** [View logs](${context.serverUrl}/${context.repo.owner}/${context.repo.repo}/actions/runs/${context.runId})`,
+              ],
+
+              trigger: isPR ? [
+                `**PR:** #${context.payload.pull_request.number} - ${context.payload.pull_request.title}`,
+                `**Merged by:** ${context.payload.pull_request.user.login}`,
+              ] : [
+                `**Triggered by:** ${context.actor}`,
+              ],
+
+              commit: [
+                `**Commit:** [\`${context.sha.substring(0, 7)}\`](${context.serverUrl}/${context.repo.owner}/${context.repo.repo}/commit/${context.sha})`,
+              ],
+
+              diagnosis: [
+                '',
+                '## Possible Causes',
+                '1. `DESIGN_TOKENS_SYNC_PAT` secret is not configured or has expired',
+                '2. PAT missing required scopes: `repo` and `workflow`',
+                '3. Target repository permissions issue',
+                '4. GitHub API rate limit or temporary outage',
+              ],
+
+              manual: [
+                '',
+                '## Manual Workaround',
+                '```bash',
+                `# In the ${TARGET_REPO_NAME} repository`,
+                `gh workflow run ${WORKFLOW_FILE}`,
+                '```',
+              ],
+
+              fix: [
+                '',
+                '## How to Fix',
+                `1. Verify [DESIGN_TOKENS_SYNC_PAT secret](${context.serverUrl}/${context.repo.owner}/${context.repo.repo}/settings/secrets/actions)`,
+                '2. Ensure PAT has `repo` + `workflow` scopes',
+                '3. Check PAT has access to target repository',
+                '4. Verify target repository exists and is accessible',
+              ]
+            };
+
+            const body = [
+              ...sections.header,
+              ...sections.trigger,
+              ...sections.commit,
+              ...sections.diagnosis,
+              ...sections.manual,
+              ...sections.fix
+            ].join('\n');
+
+            await github.rest.issues.create({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              title: `🚨 Failed to notify ${TARGET_REPO_NAME} of token update`,
+              body,
+              labels: ['automation', 'design-tokens', 'incident', 'high-priority']
+            });
