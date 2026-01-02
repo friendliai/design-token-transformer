@@ -35,33 +35,37 @@ jobs:
         id: pr-metadata
         if: github.event_name == 'pull_request'
         run: |
-          cat >> "$GITHUB_OUTPUT" <<EOF
-          pr_number=${{ github.event.pull_request.number }}
-          pr_title=${{ github.event.pull_request.title }}
-          pr_user=${{ github.event.pull_request.user.login }}
-          EOF
+          {
+            echo "pr_number=${{ github.event.pull_request.number }}";
+            echo "pr_user=${{ github.event.pull_request.user.login }}";
+            echo "pr_title<<EOF_PR_TITLE";
+            printf '%s\n' "${{ github.event.pull_request.title }}";
+            echo "EOF_PR_TITLE";
+          } >> "$GITHUB_OUTPUT"
 
       - name: Trigger web repository sync
         id: trigger
         uses: actions/github-script@v7
         env:
-          GITHUB_TOKEN: ${{ secrets.DESIGN_TOKENS_SYNC_PAT }}
+          PR_USER: ${{ steps.pr-metadata.outputs.pr_user }}
+          PR_NUMBER: ${{ steps.pr-metadata.outputs.pr_number }}
+          PR_TITLE: ${{ steps.pr-metadata.outputs.pr_title }}
         with:
           github-token: ${{ secrets.DESIGN_TOKENS_SYNC_PAT }}
           result-encoding: string
           script: |
-            const { TARGET_REPO_OWNER, TARGET_REPO_NAME } = process.env;
+            const { TARGET_REPO_OWNER, TARGET_REPO_NAME, PR_USER, PR_NUMBER, PR_TITLE } = process.env;
             const isPR = context.eventName === 'pull_request';
 
             // Build payload with only necessary data
             const payload = {
-              requester: isPR ? '${{ steps.pr-metadata.outputs.pr_user }}' : context.actor,
+              requester: isPR ? PR_USER : context.actor,
               source: context.repo.repo,
               trigger_type: context.eventName === 'workflow_dispatch' ? 'manual' : 'automatic',
               timestamp: new Date().toISOString(),
               ...(isPR && {
-                pr_number: '${{ steps.pr-metadata.outputs.pr_number }}',
-                pr_title: '${{ steps.pr-metadata.outputs.pr_title }}',
+                pr_number: PR_NUMBER,
+                pr_title: PR_TITLE,
                 commit_sha: context.sha,
                 commit_url: `${context.serverUrl}/${context.repo.owner}/${context.repo.repo}/commit/${context.sha}`
               })
