@@ -48,18 +48,6 @@
         "spread": 0
       }
     },
-    "shadow-sm-bottom": {
-      "description": null,
-      "type": "custom-shadow",
-      "value": {
-        "shadowType": "dropShadow",
-        "radius": 20,
-        "color": "#00000014",
-        "offsetX": 0,
-        "offsetY": 5,
-        "spread": 0
-      }
-    },
     "shadow-xs": {
       "description": null,
       "type": "custom-shadow",
@@ -141,11 +129,6 @@
           "600": {
             "type": "color",
             "value": "#7490acff",
-            "blendMode": "normal"
-          },
-          "650": {
-            "type": "color",
-            "value": "#537696ff",
             "blendMode": "normal"
           },
           "700": {
@@ -657,7 +640,6 @@
         "64": { "type": "dimension", "value": 64 },
         "72": { "type": "dimension", "value": 72 },
         "80": { "type": "dimension", "value": 80 },
-        "96": { "type": "dimension", "value": 96 },
         "104": { "type": "dimension", "value": 104 },
         "128": { "type": "dimension", "value": 128 },
         "256": { "type": "dimension", "value": 256 },
@@ -984,7 +966,7 @@
           "subtle": {
             "description": "",
             "type": "color",
-            "value": "{core.color.gray.650}"
+            "value": "{core.color.gray.600}"
           },
           "strong": {
             "description": "",
@@ -995,11 +977,6 @@
             "description": "",
             "type": "color",
             "value": "{core.color.gray.400}"
-          },
-          "subtler": {
-            "description": "",
-            "type": "color",
-            "value": "{core.color.gray.600}"
           }
         },
         "cloudblue": {
@@ -1455,86 +1432,6 @@
         "textCase": { "type": "string", "value": "none" }
       }
     },
-    "title-inter": {
-      "typography-title-inter-xl": {
-        "fontSize": { "type": "dimension", "value": 24 },
-        "textDecoration": { "type": "string", "value": "none" },
-        "fontFamily": { "type": "string", "value": "Saans" },
-        "fontWeight": { "type": "number", "value": 500 },
-        "fontStyle": { "type": "string", "value": "normal" },
-        "fontStretch": { "type": "string", "value": "normal" },
-        "letterSpacing": { "type": "dimension", "value": 0 },
-        "lineHeight": { "type": "dimension", "value": 31.2 },
-        "paragraphIndent": { "type": "dimension", "value": 0 },
-        "paragraphSpacing": { "type": "dimension", "value": 0 },
-        "textCase": { "type": "string", "value": "none" }
-      },
-      "typography-title-inter-lg": {
-        "fontSize": { "type": "dimension", "value": 20 },
-        "textDecoration": { "type": "string", "value": "none" },
-        "fontFamily": { "type": "string", "value": "Saans" },
-        "fontWeight": { "type": "number", "value": 500 },
-        "fontStyle": { "type": "string", "value": "normal" },
-        "fontStretch": { "type": "string", "value": "normal" },
-        "letterSpacing": { "type": "dimension", "value": 0 },
-        "lineHeight": { "type": "dimension", "value": 26 },
-        "paragraphIndent": { "type": "dimension", "value": 0 },
-        "paragraphSpacing": { "type": "dimension", "value": 0 },
-        "textCase": { "type": "string", "value": "none" }
-      },
-      "typography-title-inter-md": {
-        "fontSize": { "type": "dimension", "value": 18 },
-        "textDecoration": { "type": "string", "value": "none" },
-        "fontFamily": { "type": "string", "value": "Saans" },
-        "fontWeight": { "type": "number", "value": 500 },
-        "fontStyle": { "type": "string", "value": "normal" },
-        "fontStretch": { "type": "string", "value": "normal" },
-        "letterSpacing": { "type": "dimension", "value": 0 },
-        "lineHeight": { "type": "dimension", "value": 23.4 },
-        "paragraphIndent": { "type": "dimension", "value": 0 },
-        "paragraphSpacing": { "type": "dimension", "value": 0 },
-        "textCase": { "type": "string", "value": "none" }
-      },
-      "typography-title-inter-sm": {
-        "fontSize": { "type": "dimension", "value": 16 },
-        "textDecoration": { "type": "string", "value": "none" },
-        "fontFamily": { "type": "string", "value": "Saans" },
-        "fontWeight": { "type": "number", "value": 500 },
-        "fontStyle": { "type": "string", "value": "normal" },
-        "fontStretch": { "type": "string", "value": "normal" },
-        "letterSpacing": { "type": "dimension", "value": 0 },
-        "lineHeight": { "type": "dimension", "value": 20.8 },
-        "paragraphIndent": { "type": "dimension", "value": 0 },
-        "paragraphSpacing": { "type": "dimension", "value": 0 },
-        "textCase": { "type": "string", "value": "none" }
-      },
-      "typography-title-inter-xs": {
-        "fontSize": { "type": "dimension", "value": 14 },
-        "textDecoration": { "type": "string", "value": "none" },
-        "fontFamily": { "type": "string", "value": "Saans" },
-        "fontWeight": { "type": "number", "value": 500 },
-        "fontStyle": { "type": "string", "value": "normal" },
-        "fontStretch": { "type": "string", "value": "normal" },
-        "letterSpacing": { "type": "dimension", "value": 0 },
-        "lineHeight": { "type": "dimension", "value": 18.2 },
-        "paragraphIndent": { "type": "dimension", "value": 0 },
-        "paragraphSpacing": { "type": "dimension", "value": 0 },
-        "textCase": { "type": "string", "value": "none" }
-      },
-      "typography-title-inter-2xs": {
-        "fontSize": { "type": "dimension", "value": 12 },
-        "textDecoration": { "type": "string", "value": "none" },
-        "fontFamily": { "type": "string", "value": "Saans" },
-        "fontWeight": { "type": "number", "value": 500 },
-        "fontStyle": { "type": "string", "value": "normal" },
-        "fontStretch": { "type": "string", "value": "normal" },
-        "letterSpacing": { "type": "dimension", "value": 0 },
-        "lineHeight": { "type": "dimension", "value": 15.6 },
-        "paragraphIndent": { "type": "dimension", "value": 0 },
-        "paragraphSpacing": { "type": "dimension", "value": 0 },
-        "textCase": { "type": "string", "value": "none" }
-      }
-    },
     "body-saans": {
       "typography-body-saans-xl-wide": {
         "description": "for blog body",
@@ -1630,11 +1527,91 @@
         "textCase": { "type": "string", "value": "none" }
       }
     },
+    "title-inter": {
+      "typography-title-inter-xl": {
+        "fontSize": { "type": "dimension", "value": 24 },
+        "textDecoration": { "type": "string", "value": "none" },
+        "fontFamily": { "type": "string", "value": "Inter" },
+        "fontWeight": { "type": "number", "value": 500 },
+        "fontStyle": { "type": "string", "value": "normal" },
+        "fontStretch": { "type": "string", "value": "normal" },
+        "letterSpacing": { "type": "dimension", "value": 0 },
+        "lineHeight": { "type": "dimension", "value": 28.8 },
+        "paragraphIndent": { "type": "dimension", "value": 0 },
+        "paragraphSpacing": { "type": "dimension", "value": 0 },
+        "textCase": { "type": "string", "value": "none" }
+      },
+      "typography-title-inter-lg": {
+        "fontSize": { "type": "dimension", "value": 20 },
+        "textDecoration": { "type": "string", "value": "none" },
+        "fontFamily": { "type": "string", "value": "Inter" },
+        "fontWeight": { "type": "number", "value": 500 },
+        "fontStyle": { "type": "string", "value": "normal" },
+        "fontStretch": { "type": "string", "value": "normal" },
+        "letterSpacing": { "type": "dimension", "value": 0 },
+        "lineHeight": { "type": "dimension", "value": 24 },
+        "paragraphIndent": { "type": "dimension", "value": 0 },
+        "paragraphSpacing": { "type": "dimension", "value": 0 },
+        "textCase": { "type": "string", "value": "none" }
+      },
+      "typography-title-inter-md": {
+        "fontSize": { "type": "dimension", "value": 18 },
+        "textDecoration": { "type": "string", "value": "none" },
+        "fontFamily": { "type": "string", "value": "Inter" },
+        "fontWeight": { "type": "number", "value": 500 },
+        "fontStyle": { "type": "string", "value": "normal" },
+        "fontStretch": { "type": "string", "value": "normal" },
+        "letterSpacing": { "type": "dimension", "value": 0 },
+        "lineHeight": { "type": "dimension", "value": 21.6 },
+        "paragraphIndent": { "type": "dimension", "value": 0 },
+        "paragraphSpacing": { "type": "dimension", "value": 0 },
+        "textCase": { "type": "string", "value": "none" }
+      },
+      "typography-title-inter-sm": {
+        "fontSize": { "type": "dimension", "value": 16 },
+        "textDecoration": { "type": "string", "value": "none" },
+        "fontFamily": { "type": "string", "value": "Inter" },
+        "fontWeight": { "type": "number", "value": 500 },
+        "fontStyle": { "type": "string", "value": "normal" },
+        "fontStretch": { "type": "string", "value": "normal" },
+        "letterSpacing": { "type": "dimension", "value": 0 },
+        "lineHeight": { "type": "dimension", "value": 19.2 },
+        "paragraphIndent": { "type": "dimension", "value": 0 },
+        "paragraphSpacing": { "type": "dimension", "value": 0 },
+        "textCase": { "type": "string", "value": "none" }
+      },
+      "typography-title-inter-xs": {
+        "fontSize": { "type": "dimension", "value": 14 },
+        "textDecoration": { "type": "string", "value": "none" },
+        "fontFamily": { "type": "string", "value": "Inter" },
+        "fontWeight": { "type": "number", "value": 500 },
+        "fontStyle": { "type": "string", "value": "normal" },
+        "fontStretch": { "type": "string", "value": "normal" },
+        "letterSpacing": { "type": "dimension", "value": 0 },
+        "lineHeight": { "type": "dimension", "value": 16.8 },
+        "paragraphIndent": { "type": "dimension", "value": 0 },
+        "paragraphSpacing": { "type": "dimension", "value": 0 },
+        "textCase": { "type": "string", "value": "none" }
+      },
+      "typography-title-inter-2xs": {
+        "fontSize": { "type": "dimension", "value": 12 },
+        "textDecoration": { "type": "string", "value": "none" },
+        "fontFamily": { "type": "string", "value": "Inter" },
+        "fontWeight": { "type": "number", "value": 500 },
+        "fontStyle": { "type": "string", "value": "normal" },
+        "fontStretch": { "type": "string", "value": "normal" },
+        "letterSpacing": { "type": "dimension", "value": 0 },
+        "lineHeight": { "type": "dimension", "value": 14.4 },
+        "paragraphIndent": { "type": "dimension", "value": 0 },
+        "paragraphSpacing": { "type": "dimension", "value": 0 },
+        "textCase": { "type": "string", "value": "none" }
+      }
+    },
     "body-inter": {
       "typography-body-inter-lg": {
         "fontSize": { "type": "dimension", "value": 16 },
         "textDecoration": { "type": "string", "value": "none" },
-        "fontFamily": { "type": "string", "value": "Saans" },
+        "fontFamily": { "type": "string", "value": "Inter" },
         "fontWeight": { "type": "number", "value": 400 },
         "fontStyle": { "type": "string", "value": "normal" },
         "fontStretch": { "type": "string", "value": "normal" },
@@ -1647,7 +1624,7 @@
       "typography-body-inter-md": {
         "fontSize": { "type": "dimension", "value": 14 },
         "textDecoration": { "type": "string", "value": "none" },
-        "fontFamily": { "type": "string", "value": "Saans" },
+        "fontFamily": { "type": "string", "value": "Inter" },
         "fontWeight": { "type": "number", "value": 400 },
         "fontStyle": { "type": "string", "value": "normal" },
         "fontStretch": { "type": "string", "value": "normal" },
@@ -1660,7 +1637,7 @@
       "typography-body-inter-sm": {
         "fontSize": { "type": "dimension", "value": 12 },
         "textDecoration": { "type": "string", "value": "none" },
-        "fontFamily": { "type": "string", "value": "Saans" },
+        "fontFamily": { "type": "string", "value": "Inter" },
         "fontWeight": { "type": "number", "value": 400 },
         "fontStyle": { "type": "string", "value": "normal" },
         "fontStretch": { "type": "string", "value": "normal" },
@@ -1673,7 +1650,7 @@
       "typography-body-inter-xs": {
         "fontSize": { "type": "dimension", "value": 10 },
         "textDecoration": { "type": "string", "value": "none" },
-        "fontFamily": { "type": "string", "value": "Saans" },
+        "fontFamily": { "type": "string", "value": "Inter" },
         "fontWeight": { "type": "number", "value": 400 },
         "fontStyle": { "type": "string", "value": "normal" },
         "fontStretch": { "type": "string", "value": "normal" },
