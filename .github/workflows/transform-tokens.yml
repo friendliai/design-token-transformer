@@ -126,10 +126,13 @@ jobs:
                   ...(font ? { font } : {}),
                   ...(typography ? { typography } : {}),
                 };
-                fs.writeFileSync(p, JSON.stringify(out, null, 2));
+                // Write minified JSON so the subsequent prettier step decides
+                // line breaks natively (default `json` parser keeps short objects
+                // on one line, long ones multi-line — matching mains layout).
+                fs.writeFileSync(p, JSON.stringify(out));
                 changed = true;
               } else if (changed) {
-                fs.writeFileSync(p, JSON.stringify(j, null, 2));
+                fs.writeFileSync(p, JSON.stringify(j));
               }
 
               if (changed) console.log("Normalized " + p);
