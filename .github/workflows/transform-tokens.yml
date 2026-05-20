@@ -26,13 +26,18 @@ jobs:
           # it uses the directory named "tokens" to store this json file (change this if you changed it above to use a different folder)
           dir: 'tokens'
 
-      - name: Normalize token structure (re-wrap with variables)
-        # Design Tokens (lukasoppermann/design-tokens) plugin removed the
-        # top-level `variables` wrapper in recent versions and renamed
-        # `font` to `typography`. Downstream consumers depend on the
-        # `variables` wrapper, so we re-wrap it here for compatibility.
-        # `font` <-> `typography` is a content-level change and must be
-        # handled by the consumer, not normalized here.
+      - name: Normalize token structure
+        # Design Tokens (lukasoppermann/design-tokens) plugin changed its
+        # export format in recent versions:
+        #   1. Removed the top-level `variables { core, color, layout, radius }`
+        #      wrapper -- we re-wrap it here.
+        #   2. Renamed `font` to `typography`, restructured by semantic
+        #      category, and introduced weight variants (regular/medium/semibold)
+        #      for body/display/caption -- we map back to old flat keys.
+        # Default-weight mapping is data-verified against the old main:
+        #   body.{size}.regular == old typography-body-saans-{size}
+        #   display.{size}.medium == old typography-display-saans-{size}
+        # Non-default weights are preserved with a -{weight} suffix on the key.
         env:
           TOKENS_DIR: tokens
         run: |
@@ -41,26 +46,93 @@ jobs:
             const path = require("path");
             const dir = process.env.TOKENS_DIR;
             const wrapKeys = ["core", "color", "layout", "radius"];
+
+            // typography category -> old "font" sub-key mapping rules.
+            // familySuffix: appended to category name and embedded in leaf key.
+            // defaultWeight: null = flat leaf (no weight variants); otherwise
+            //   the weight whose token becomes the un-suffixed default.
+            const typoCats = [
+              { name: "title",   familySuffix: "-saans", defaultWeight: null      },
+              { name: "body",    familySuffix: "-saans", defaultWeight: "regular" },
+              { name: "display", familySuffix: "-saans", defaultWeight: "medium"  },
+              { name: "caption", familySuffix: "-saans", defaultWeight: null      },
+              { name: "mono",    familySuffix: "",       defaultWeight: null      },
+            ];
+
+            const leafKey = (cat, suffix, size, weight) => {
+              const base = `typography-${cat}${suffix}-${size}`;
+              return weight ? `${base}-${weight}` : base;
+            };
+
             for (const f of fs.readdirSync(dir)) {
               if (!f.endsWith(".json")) continue;
               const p = path.join(dir, f);
               const j = JSON.parse(fs.readFileSync(p, "utf8"));
-              if (j.variables) continue;
-              if (!wrapKeys.some(k => k in j)) continue;
-              const variables = {};
-              for (const k of wrapKeys) {
-                if (k in j) { variables[k] = j[k]; delete j[k]; }
+              let changed = false;
+
+              // typography -> font
+              if (j.typography && !j.font && typeof j.typography === "object") {
+                const T = j.typography;
+                const font = {};
+
+                for (const { name: cat, familySuffix, defaultWeight } of typoCats) {
+                  const src = T[cat];
+                  if (!src || typeof src !== "object") continue;
+                  const out = {};
+                  for (const [size, val] of Object.entries(src)) {
+                    if (!val || typeof val !== "object") continue;
+                    if ("fontSize" in val) {
+                      out[leafKey(cat, familySuffix, size, null)] = val;
+                    } else {
+                      for (const [weight, tok] of Object.entries(val)) {
+                        const isDefault = weight === defaultWeight;
+                        out[leafKey(cat, familySuffix, size, isDefault ? null : weight)] = tok;
+                      }
+                    }
+                  }
+                  font[`${cat}${familySuffix}`] = out;
+                }
+
+                // x deprecated -> font["title-inter"], font["body-inter"]
+                const dep = T["x deprecated"];
+                if (dep && typeof dep === "object") {
+                  for (const [k, v] of Object.entries(dep)) {
+                    font[k.replace(/\s+/g, "")] = v;
+                  }
+                }
+
+                // font.family / font.weight pass-through
+                if (T.font && typeof T.font === "object") {
+                  if (T.font.family) font.family = T.font.family;
+                  if (T.font.weight) font.weight = T.font.weight;
+                }
+
+                j.font = font;
+                delete j.typography;
+                changed = true;
               }
-              const { effect, font, typography, ...rest } = j;
-              const out = {
-                ...(effect ? { effect } : {}),
-                variables,
-                ...rest,
-                ...(font ? { font } : {}),
-                ...(typography ? { typography } : {}),
-              };
-              fs.writeFileSync(p, JSON.stringify(out, null, 2));
-              console.log("Re-wrapped " + p + " under variables");
+
+              // Re-wrap with `variables`
+              if (!j.variables && wrapKeys.some(k => k in j)) {
+                const variables = {};
+                for (const k of wrapKeys) {
+                  if (k in j) { variables[k] = j[k]; delete j[k]; }
+                }
+                const { effect, font, typography, ...rest } = j;
+                const out = {
+                  ...(effect ? { effect } : {}),
+                  variables,
+                  ...rest,
+                  ...(font ? { font } : {}),
+                  ...(typography ? { typography } : {}),
+                };
+                fs.writeFileSync(p, JSON.stringify(out, null, 2));
+                changed = true;
+              } else if (changed) {
+                fs.writeFileSync(p, JSON.stringify(j, null, 2));
+              }
+
+              if (changed) console.log("Normalized " + p);
             }
           '
 
