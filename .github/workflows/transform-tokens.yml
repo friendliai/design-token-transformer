@@ -26,6 +26,44 @@ jobs:
           # it uses the directory named "tokens" to store this json file (change this if you changed it above to use a different folder)
           dir: 'tokens'
 
+      - name: Normalize token structure (re-wrap with variables)
+        # Design Tokens (lukasoppermann/design-tokens) plugin removed the
+        # top-level `variables` wrapper in recent versions and renamed
+        # `font` to `typography`. Downstream consumers depend on the
+        # `variables` wrapper, so we re-wrap it here for compatibility.
+        # `font` <-> `typography` is a content-level change and must be
+        # handled by the consumer, not normalized here.
+        env:
+          TOKENS_DIR: tokens
+        run: |
+          node -e '
+            const fs = require("fs");
+            const path = require("path");
+            const dir = process.env.TOKENS_DIR;
+            const wrapKeys = ["core", "color", "layout", "radius"];
+            for (const f of fs.readdirSync(dir)) {
+              if (!f.endsWith(".json")) continue;
+              const p = path.join(dir, f);
+              const j = JSON.parse(fs.readFileSync(p, "utf8"));
+              if (j.variables) continue;
+              if (!wrapKeys.some(k => k in j)) continue;
+              const variables = {};
+              for (const k of wrapKeys) {
+                if (k in j) { variables[k] = j[k]; delete j[k]; }
+              }
+              const { effect, font, typography, ...rest } = j;
+              const out = {
+                ...(effect ? { effect } : {}),
+                variables,
+                ...rest,
+                ...(font ? { font } : {}),
+                ...(typography ? { typography } : {}),
+              };
+              fs.writeFileSync(p, JSON.stringify(out, null, 2));
+              console.log("Re-wrapped " + p + " under variables");
+            }
+          '
+
       - name: run prettier on json file
         run: npx prettier --write tokens/*.json
 
