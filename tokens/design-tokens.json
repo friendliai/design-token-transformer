@@ -1272,8 +1272,8 @@
     }
   },
   "font": {
-    "display-saans": {
-      "typography-display-saans-lg": {
+    "display": {
+      "display-lg": {
         "fontSize": { "type": "dimension", "value": 64 },
         "textDecoration": { "type": "string", "value": "none" },
         "fontFamily": { "type": "string", "value": "Saans" },
@@ -1286,7 +1286,7 @@
         "paragraphSpacing": { "type": "dimension", "value": 0 },
         "textCase": { "type": "string", "value": "none" }
       },
-      "typography-display-saans-md": {
+      "display-md": {
         "fontSize": { "type": "dimension", "value": 56 },
         "textDecoration": { "type": "string", "value": "none" },
         "fontFamily": { "type": "string", "value": "Saans" },
@@ -1299,7 +1299,7 @@
         "paragraphSpacing": { "type": "dimension", "value": 0 },
         "textCase": { "type": "string", "value": "none" }
       },
-      "typography-display-saans-sm": {
+      "display-sm": {
         "fontSize": { "type": "dimension", "value": 48 },
         "textDecoration": { "type": "string", "value": "none" },
         "fontFamily": { "type": "string", "value": "Saans" },
@@ -1313,8 +1313,8 @@
         "textCase": { "type": "string", "value": "none" }
       }
     },
-    "title-saans": {
-      "typography-title-saans-3xl": {
+    "title": {
+      "title-3xl": {
         "fontSize": { "type": "dimension", "value": 40 },
         "textDecoration": { "type": "string", "value": "none" },
         "fontFamily": { "type": "string", "value": "Saans" },
@@ -1327,7 +1327,7 @@
         "paragraphSpacing": { "type": "dimension", "value": 0 },
         "textCase": { "type": "string", "value": "none" }
       },
-      "typography-title-saans-2xl": {
+      "title-2xl": {
         "fontSize": { "type": "dimension", "value": 32 },
         "textDecoration": { "type": "string", "value": "none" },
         "fontFamily": { "type": "string", "value": "Saans" },
@@ -1340,7 +1340,7 @@
         "paragraphSpacing": { "type": "dimension", "value": 0 },
         "textCase": { "type": "string", "value": "none" }
       },
-      "typography-title-saans-xl": {
+      "title-xl": {
         "fontSize": { "type": "dimension", "value": 28 },
         "textDecoration": { "type": "string", "value": "none" },
         "fontFamily": { "type": "string", "value": "Saans" },
@@ -1353,7 +1353,7 @@
         "paragraphSpacing": { "type": "dimension", "value": 0 },
         "textCase": { "type": "string", "value": "none" }
       },
-      "typography-title-saans-lg": {
+      "title-lg": {
         "fontSize": { "type": "dimension", "value": 24 },
         "textDecoration": { "type": "string", "value": "none" },
         "fontFamily": { "type": "string", "value": "Saans" },
@@ -1366,7 +1366,7 @@
         "paragraphSpacing": { "type": "dimension", "value": 0 },
         "textCase": { "type": "string", "value": "none" }
       },
-      "typography-title-saans-md": {
+      "title-md": {
         "fontSize": { "type": "dimension", "value": 20 },
         "textDecoration": { "type": "string", "value": "none" },
         "fontFamily": { "type": "string", "value": "Saans" },
@@ -1379,7 +1379,7 @@
         "paragraphSpacing": { "type": "dimension", "value": 0 },
         "textCase": { "type": "string", "value": "none" }
       },
-      "typography-title-saans-sm": {
+      "title-sm": {
         "fontSize": { "type": "dimension", "value": 18 },
         "textDecoration": { "type": "string", "value": "none" },
         "fontFamily": { "type": "string", "value": "Saans" },
@@ -1392,7 +1392,7 @@
         "paragraphSpacing": { "type": "dimension", "value": 0 },
         "textCase": { "type": "string", "value": "none" }
       },
-      "typography-title-saans-xs": {
+      "title-xs": {
         "fontSize": { "type": "dimension", "value": 16 },
         "textDecoration": { "type": "string", "value": "none" },
         "fontFamily": { "type": "string", "value": "Saans" },
@@ -1405,7 +1405,7 @@
         "paragraphSpacing": { "type": "dimension", "value": 0 },
         "textCase": { "type": "string", "value": "none" }
       },
-      "typography-title-saans-2xs": {
+      "title-2xs": {
         "fontSize": { "type": "dimension", "value": 14 },
         "textDecoration": { "type": "string", "value": "none" },
         "fontFamily": { "type": "string", "value": "Saans" },
@@ -1418,7 +1418,7 @@
         "paragraphSpacing": { "type": "dimension", "value": 0 },
         "textCase": { "type": "string", "value": "none" }
       },
-      "typography-title-saans-3xs": {
+      "title-3xs": {
         "fontSize": { "type": "dimension", "value": 12 },
         "textDecoration": { "type": "string", "value": "none" },
         "fontFamily": { "type": "string", "value": "Saans" },
@@ -1432,8 +1432,8 @@
         "textCase": { "type": "string", "value": "none" }
       }
     },
-    "body-saans": {
-      "typography-body-saans-xl-wide": {
+    "body": {
+      "body-xl-wide": {
         "description": "for blog body",
         "fontSize": { "type": "dimension", "value": 18 },
         "textDecoration": { "type": "string", "value": "none" },
@@ -1447,7 +1447,7 @@
         "paragraphSpacing": { "type": "dimension", "value": 0 },
         "textCase": { "type": "string", "value": "none" }
       },
-      "typography-body-saans-xl": {
+      "body-xl": {
         "fontSize": { "type": "dimension", "value": 18 },
         "textDecoration": { "type": "string", "value": "none" },
         "fontFamily": { "type": "string", "value": "Saans" },
@@ -1460,7 +1460,7 @@
         "paragraphSpacing": { "type": "dimension", "value": 0 },
         "textCase": { "type": "string", "value": "none" }
       },
-      "typography-body-saans-lg": {
+      "body-lg": {
         "fontSize": { "type": "dimension", "value": 16 },
         "textDecoration": { "type": "string", "value": "none" },
         "fontFamily": { "type": "string", "value": "Saans" },
@@ -1473,7 +1473,7 @@
         "paragraphSpacing": { "type": "dimension", "value": 0 },
         "textCase": { "type": "string", "value": "none" }
       },
-      "typography-body-saans-md": {
+      "body-md": {
         "description": "for deploy model chat",
         "fontSize": { "type": "dimension", "value": 15 },
         "textDecoration": { "type": "string", "value": "none" },
@@ -1487,7 +1487,7 @@
         "paragraphSpacing": { "type": "dimension", "value": 0 },
         "textCase": { "type": "string", "value": "none" }
       },
-      "typography-body-saans-sm": {
+      "body-sm": {
         "fontSize": { "type": "dimension", "value": 14 },
         "textDecoration": { "type": "string", "value": "none" },
         "fontFamily": { "type": "string", "value": "Saans" },
@@ -1500,7 +1500,7 @@
         "paragraphSpacing": { "type": "dimension", "value": 0 },
         "textCase": { "type": "string", "value": "none" }
       },
-      "typography-body-saans-xs": {
+      "body-xs": {
         "fontSize": { "type": "dimension", "value": 12 },
         "textDecoration": { "type": "string", "value": "none" },
         "fontFamily": { "type": "string", "value": "Saans" },
@@ -1513,7 +1513,7 @@
         "paragraphSpacing": { "type": "dimension", "value": 0 },
         "textCase": { "type": "string", "value": "none" }
       },
-      "typography-body-saans-2xs": {
+      "body-2xs": {
         "fontSize": { "type": "dimension", "value": 10 },
         "textDecoration": { "type": "string", "value": "none" },
         "fontFamily": { "type": "string", "value": "Saans" },
@@ -1528,7 +1528,7 @@
       }
     },
     "title-inter": {
-      "typography-title-inter-xl": {
+      "title-inter-xl": {
         "fontSize": { "type": "dimension", "value": 24 },
         "textDecoration": { "type": "string", "value": "none" },
         "fontFamily": { "type": "string", "value": "Inter" },
@@ -1541,7 +1541,7 @@
         "paragraphSpacing": { "type": "dimension", "value": 0 },
         "textCase": { "type": "string", "value": "none" }
       },
-      "typography-title-inter-lg": {
+      "title-inter-lg": {
         "fontSize": { "type": "dimension", "value": 20 },
         "textDecoration": { "type": "string", "value": "none" },
         "fontFamily": { "type": "string", "value": "Inter" },
@@ -1554,7 +1554,7 @@
         "paragraphSpacing": { "type": "dimension", "value": 0 },
         "textCase": { "type": "string", "value": "none" }
       },
-      "typography-title-inter-md": {
+      "title-inter-md": {
         "fontSize": { "type": "dimension", "value": 18 },
         "textDecoration": { "type": "string", "value": "none" },
         "fontFamily": { "type": "string", "value": "Inter" },
@@ -1567,7 +1567,7 @@
         "paragraphSpacing": { "type": "dimension", "value": 0 },
         "textCase": { "type": "string", "value": "none" }
       },
-      "typography-title-inter-sm": {
+      "title-inter-sm": {
         "fontSize": { "type": "dimension", "value": 16 },
         "textDecoration": { "type": "string", "value": "none" },
         "fontFamily": { "type": "string", "value": "Inter" },
@@ -1580,7 +1580,7 @@
         "paragraphSpacing": { "type": "dimension", "value": 0 },
         "textCase": { "type": "string", "value": "none" }
       },
-      "typography-title-inter-xs": {
+      "title-inter-xs": {
         "fontSize": { "type": "dimension", "value": 14 },
         "textDecoration": { "type": "string", "value": "none" },
         "fontFamily": { "type": "string", "value": "Inter" },
@@ -1593,7 +1593,7 @@
         "paragraphSpacing": { "type": "dimension", "value": 0 },
         "textCase": { "type": "string", "value": "none" }
       },
-      "typography-title-inter-2xs": {
+      "title-inter-2xs": {
         "fontSize": { "type": "dimension", "value": 12 },
         "textDecoration": { "type": "string", "value": "none" },
         "fontFamily": { "type": "string", "value": "Inter" },
@@ -1608,7 +1608,7 @@
       }
     },
     "body-inter": {
-      "typography-body-inter-lg": {
+      "body-inter-lg": {
         "fontSize": { "type": "dimension", "value": 16 },
         "textDecoration": { "type": "string", "value": "none" },
         "fontFamily": { "type": "string", "value": "Inter" },
@@ -1621,7 +1621,7 @@
         "paragraphSpacing": { "type": "dimension", "value": 0 },
         "textCase": { "type": "string", "value": "none" }
       },
-      "typography-body-inter-md": {
+      "body-inter-md": {
         "fontSize": { "type": "dimension", "value": 14 },
         "textDecoration": { "type": "string", "value": "none" },
         "fontFamily": { "type": "string", "value": "Inter" },
@@ -1634,7 +1634,7 @@
         "paragraphSpacing": { "type": "dimension", "value": 0 },
         "textCase": { "type": "string", "value": "none" }
       },
-      "typography-body-inter-sm": {
+      "body-inter-sm": {
         "fontSize": { "type": "dimension", "value": 12 },
         "textDecoration": { "type": "string", "value": "none" },
         "fontFamily": { "type": "string", "value": "Inter" },
@@ -1647,7 +1647,7 @@
         "paragraphSpacing": { "type": "dimension", "value": 0 },
         "textCase": { "type": "string", "value": "none" }
       },
-      "typography-body-inter-xs": {
+      "body-inter-xs": {
         "fontSize": { "type": "dimension", "value": 10 },
         "textDecoration": { "type": "string", "value": "none" },
         "fontFamily": { "type": "string", "value": "Inter" },
@@ -1662,7 +1662,7 @@
       }
     },
     "mono": {
-      "typography-mono-lg": {
+      "mono-lg": {
         "fontSize": { "type": "dimension", "value": 16 },
         "textDecoration": { "type": "string", "value": "none" },
         "fontFamily": { "type": "string", "value": "Geist Mono" },
@@ -1675,7 +1675,7 @@
         "paragraphSpacing": { "type": "dimension", "value": 0 },
         "textCase": { "type": "string", "value": "none" }
       },
-      "typography-mono-md": {
+      "mono-md": {
         "fontSize": { "type": "dimension", "value": 14 },
         "textDecoration": { "type": "string", "value": "none" },
         "fontFamily": { "type": "string", "value": "Geist Mono" },
@@ -1688,7 +1688,7 @@
         "paragraphSpacing": { "type": "dimension", "value": 0 },
         "textCase": { "type": "string", "value": "none" }
       },
-      "typography-mono-sm": {
+      "mono-sm": {
         "fontSize": { "type": "dimension", "value": 12 },
         "textDecoration": { "type": "string", "value": "none" },
         "fontFamily": { "type": "string", "value": "Geist Mono" },
@@ -1701,7 +1701,7 @@
         "paragraphSpacing": { "type": "dimension", "value": 0 },
         "textCase": { "type": "string", "value": "none" }
       },
-      "typography-mono-xs": {
+      "mono-xs": {
         "fontSize": { "type": "dimension", "value": 10 },
         "textDecoration": { "type": "string", "value": "none" },
         "fontFamily": { "type": "string", "value": "Geist Mono" },
