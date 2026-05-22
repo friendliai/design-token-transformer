@@ -968,6 +968,11 @@
             "type": "color",
             "value": "{core.color.gray.600}"
           },
+          "subtler": {
+            "description": "",
+            "type": "color",
+            "value": "{core.color.gray.650}"
+          },
           "strong": {
             "description": "",
             "type": "color",
