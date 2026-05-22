@@ -131,6 +131,11 @@
             "value": "#7490acff",
             "blendMode": "normal"
           },
+          "650": {
+            "type": "color",
+            "value": "#537696ff",
+            "blendMode": "normal"
+          },
           "700": {
             "type": "color",
             "value": "#486581ff",
