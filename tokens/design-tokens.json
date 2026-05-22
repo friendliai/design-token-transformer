@@ -971,12 +971,12 @@
           "subtle": {
             "description": "",
             "type": "color",
-            "value": "{core.color.gray.600}"
+            "value": "{core.color.gray.650}"
           },
           "subtler": {
             "description": "",
             "type": "color",
-            "value": "{core.color.gray.650}"
+            "value": "{core.color.gray.600}"
           },
           "strong": {
             "description": "",
