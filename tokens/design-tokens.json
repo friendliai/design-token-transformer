@@ -128,12 +128,12 @@
           },
           "600": {
             "type": "color",
-            "value": "#7490acff",
+            "value": "#537696ff",
             "blendMode": "normal"
           },
           "650": {
             "type": "color",
-            "value": "#537696ff",
+            "value": "#7490acff",
             "blendMode": "normal"
           },
           "700": {
