@@ -39,7 +39,7 @@ jobs:
         #      the same number across every variant of a size, so we derive
         #      the correct variable-font axis from the weight key name.
         # Every weight variant carries an explicit -{weight} suffix on the
-        # emitted leaf key, including the category's default weight:
+        # emitted leaf key, including the default weight for the category:
         #   body.{size}.regular   -> typography-body-{size}-regular
         #   display.{size}.medium -> typography-display-{size}-medium
         # This applies whether the variant came in nested under a size
@@ -82,8 +82,8 @@ jobs:
             // single-weight categories ({size: leaf}) and weight-variant
             // categories ({size: {regular|medium|semibold: leaf}}).
             // Every weight variant gets an explicit -{weight} suffix on its
-            // leaf key, including the category's default weight, so the
-            // emitted key always identifies which axis it represents.
+            // leaf key, including the default weight for the category, so
+            // the emitted key always identifies which axis it represents.
             const flattenCategory = (cat, src) => {
               const out = {};
               for (const [sizeKey, val] of Object.entries(src)) {
