@@ -38,10 +38,13 @@ jobs:
         #      overwrite the (incorrect) `fontWeight.value` -- Figma exports
         #      the same number across every variant of a size, so we derive
         #      the correct variable-font axis from the weight key name.
-        # Default-weight mapping (un-suffixed leaf):
-        #   body.{size}.regular   -> typography-body-{size}
-        #   display.{size}.medium -> typography-display-{size}
-        # Non-default weights are preserved with a -{weight} suffix on the key.
+        # Every weight variant carries an explicit -{weight} suffix on the
+        # emitted leaf key, including the category's default weight:
+        #   body.{size}.regular   -> typography-body-{size}-regular
+        #   display.{size}.medium -> typography-display-{size}-medium
+        # This applies whether the variant came in nested under a size
+        # group or already flat from a previous run; Case 3 renames
+        # suffix-less default-weight leaves so the output stays uniform.
         env:
           TOKENS_DIR: tokens
         run: |
@@ -57,8 +60,10 @@ jobs:
             const WEIGHT_TO_AXIS = { regular: 430, medium: 530, semibold: 650 };
 
             // typography category -> `font` sub-key mapping rules.
-            // defaultWeight: null = flat leaf (no weight variants); otherwise
-            //   the weight whose token becomes the un-suffixed default.
+            // defaultWeight: null = single-weight category (no variants to
+            //   reconcile); otherwise the weight implied by a leaf that
+            //   arrives suffix-less. Case 3 renames such leaves to carry
+            //   this suffix explicitly.
             const typoCats = [
               { name: "title",   defaultWeight: null      },
               { name: "body",    defaultWeight: "regular" },
@@ -76,7 +81,10 @@ jobs:
             // Flatten a category container into a leaf-keyed map. Handles
             // single-weight categories ({size: leaf}) and weight-variant
             // categories ({size: {regular|medium|semibold: leaf}}).
-            const flattenCategory = (cat, src, defaultWeight) => {
+            // Every weight variant gets an explicit -{weight} suffix on its
+            // leaf key, including the category's default weight, so the
+            // emitted key always identifies which axis it represents.
+            const flattenCategory = (cat, src) => {
               const out = {};
               for (const [sizeKey, val] of Object.entries(src)) {
                 if (!val || typeof val !== "object") continue;
@@ -89,8 +97,7 @@ jobs:
                     if (tok.fontWeight && WEIGHT_TO_AXIS[weight] != null) {
                       tok.fontWeight = { ...tok.fontWeight, value: WEIGHT_TO_AXIS[weight] };
                     }
-                    const leaf = weight === defaultWeight ? base : `${base}-${weight}`;
-                    out[leaf] = tok;
+                    out[`${base}-${weight}`] = tok;
                   }
                 }
               }
@@ -119,9 +126,9 @@ jobs:
                 const T = j.typography;
                 const font = {};
 
-                for (const { name: cat, defaultWeight } of typoCats) {
+                for (const { name: cat } of typoCats) {
                   if (!T[cat] || typeof T[cat] !== "object") continue;
-                  font[cat] = flattenCategory(cat, T[cat], defaultWeight);
+                  font[cat] = flattenCategory(cat, T[cat]);
                 }
 
                 // x deprecated -> font["title-inter"], font["body-inter"]
@@ -146,12 +153,39 @@ jobs:
               // Case 2: raw already uses `font` wrapper -> flatten any
               // weight-variant sub-keys inside known typography categories.
               if (j.font && typeof j.font === "object") {
-                for (const { name: cat, defaultWeight } of typoCats) {
+                for (const { name: cat } of typoCats) {
                   const src = j.font[cat];
                   if (!src || typeof src !== "object") continue;
                   if (!hasWeightVariants(src)) continue;
-                  j.font[cat] = flattenCategory(cat, src, defaultWeight);
+                  j.font[cat] = flattenCategory(cat, src);
                   changed = true;
+                }
+              }
+
+              // Case 3: raw already flat, but default-weight leaves still
+              // carry no -{weight} suffix (older Figma exports). Rename them
+              // so every leaf identifies its axis explicitly.
+              const WEIGHT_SUFFIXES = Object.keys(WEIGHT_TO_AXIS);
+              if (j.font && typeof j.font === "object") {
+                for (const { name: cat, defaultWeight } of typoCats) {
+                  if (!defaultWeight) continue;
+                  const src = j.font[cat];
+                  if (!src || typeof src !== "object") continue;
+                  const renamed = {};
+                  let renamedAny = false;
+                  for (const [k, v] of Object.entries(src)) {
+                    const hasSuffix = WEIGHT_SUFFIXES.some((s) => k.endsWith(`-${s}`));
+                    if (hasSuffix) {
+                      renamed[k] = v;
+                    } else {
+                      renamed[`${k}-${defaultWeight}`] = v;
+                      renamedAny = true;
+                    }
+                  }
+                  if (renamedAny) {
+                    j.font[cat] = renamed;
+                    changed = true;
+                  }
                 }
               }
 
