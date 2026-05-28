@@ -27,14 +27,17 @@ jobs:
           dir: 'tokens'
 
       - name: Normalize token structure
-        # Design Tokens (lukasoppermann/design-tokens) plugin changed its
-        # export format in recent versions:
-        #   1. Removed the top-level `variables { core, color, layout, radius }`
-        #      wrapper -- we re-wrap it here.
-        #   2. Renamed `font` to `typography`, restructured by semantic
-        #      category, and introduced weight variants (regular/medium/semibold)
-        #      for body/display/caption -- we flatten back into `font.<cat>`
-        #      with `typography-<cat>-<size>[-<weight>]` leaf keys.
+        # Design Tokens (lukasoppermann/design-tokens) plugin changes:
+        #   1. Top-level `variables { core, color, layout, radius }` wrapper
+        #      was removed -- we re-wrap it here.
+        #   2. `font` may arrive renamed to `typography` and restructured by
+        #      semantic category. We flatten back into `font.<cat>` with
+        #      `typography-<cat>-<size>[-<weight>]` leaf keys.
+        #   3. Weight variants (regular/medium/semibold) arrive as sub-keys
+        #      under each size. We flatten those into separate leaves AND
+        #      overwrite the (incorrect) `fontWeight.value` -- Figma exports
+        #      the same number across every variant of a size, so we derive
+        #      the correct variable-font axis from the weight key name.
         # Default-weight mapping (un-suffixed leaf):
         #   body.{size}.regular   -> typography-body-{size}
         #   display.{size}.medium -> typography-display-{size}
@@ -48,6 +51,11 @@ jobs:
             const dir = process.env.TOKENS_DIR;
             const wrapKeys = ["core", "color", "layout", "radius"];
 
+            // Variable-font axis values keyed by Figma weight-variant name.
+            // Figma exports `fontWeight.value` as a single (wrong) number per
+            // size group, so we derive the real axis from the key itself.
+            const WEIGHT_TO_AXIS = { regular: 430, medium: 530, semibold: 650 };
+
             // typography category -> `font` sub-key mapping rules.
             // defaultWeight: null = flat leaf (no weight variants); otherwise
             //   the weight whose token becomes the un-suffixed default.
@@ -59,10 +67,46 @@ jobs:
               { name: "mono",    defaultWeight: null      },
             ];
 
-            const leafKey = (cat, size, weight) => {
-              const base = `typography-${cat}-${size}`;
-              return weight ? `${base}-${weight}` : base;
+            // Size keys arrive in two shapes:
+            //   short:  "md"                  -> "typography-{cat}-md"
+            //   full:   "typography-body-md"  -> use as-is
+            const baseLeafKey = (cat, sizeKey) =>
+              sizeKey.startsWith("typography-") ? sizeKey : `typography-${cat}-${sizeKey}`;
+
+            // Flatten a category container into a leaf-keyed map. Handles
+            // single-weight categories ({size: leaf}) and weight-variant
+            // categories ({size: {regular|medium|semibold: leaf}}).
+            const flattenCategory = (cat, src, defaultWeight) => {
+              const out = {};
+              for (const [sizeKey, val] of Object.entries(src)) {
+                if (!val || typeof val !== "object") continue;
+                const base = baseLeafKey(cat, sizeKey);
+                if ("fontSize" in val) {
+                  out[base] = val;
+                } else {
+                  for (const [weight, tok] of Object.entries(val)) {
+                    if (!tok || typeof tok !== "object") continue;
+                    if (tok.fontWeight && WEIGHT_TO_AXIS[weight] != null) {
+                      tok.fontWeight = { ...tok.fontWeight, value: WEIGHT_TO_AXIS[weight] };
+                    }
+                    const leaf = weight === defaultWeight ? base : `${base}-${weight}`;
+                    out[leaf] = tok;
+                  }
+                }
+              }
+              return out;
             };
+
+            // A category bucket is weight-variant-shaped when at least one
+            // size group lacks `fontSize` but contains children that have it.
+            const hasWeightVariants = (src) =>
+              Object.values(src).some(
+                (v) =>
+                  v &&
+                  typeof v === "object" &&
+                  !("fontSize" in v) &&
+                  Object.values(v).some((c) => c && typeof c === "object" && "fontSize" in c)
+              );
 
             for (const f of fs.readdirSync(dir)) {
               if (!f.endsWith(".json")) continue;
@@ -70,27 +114,14 @@ jobs:
               const j = JSON.parse(fs.readFileSync(p, "utf8"));
               let changed = false;
 
-              // typography -> font
+              // Case 1: legacy raw uses `typography` wrapper -> build `font`.
               if (j.typography && !j.font && typeof j.typography === "object") {
                 const T = j.typography;
                 const font = {};
 
                 for (const { name: cat, defaultWeight } of typoCats) {
-                  const src = T[cat];
-                  if (!src || typeof src !== "object") continue;
-                  const out = {};
-                  for (const [size, val] of Object.entries(src)) {
-                    if (!val || typeof val !== "object") continue;
-                    if ("fontSize" in val) {
-                      out[leafKey(cat, size, null)] = val;
-                    } else {
-                      for (const [weight, tok] of Object.entries(val)) {
-                        const isDefault = weight === defaultWeight;
-                        out[leafKey(cat, size, isDefault ? null : weight)] = tok;
-                      }
-                    }
-                  }
-                  font[cat] = out;
+                  if (!T[cat] || typeof T[cat] !== "object") continue;
+                  font[cat] = flattenCategory(cat, T[cat], defaultWeight);
                 }
 
                 // x deprecated -> font["title-inter"], font["body-inter"]
@@ -110,6 +141,18 @@ jobs:
                 j.font = font;
                 delete j.typography;
                 changed = true;
+              }
+
+              // Case 2: raw already uses `font` wrapper -> flatten any
+              // weight-variant sub-keys inside known typography categories.
+              if (j.font && typeof j.font === "object") {
+                for (const { name: cat, defaultWeight } of typoCats) {
+                  const src = j.font[cat];
+                  if (!src || typeof src !== "object") continue;
+                  if (!hasWeightVariants(src)) continue;
+                  j.font[cat] = flattenCategory(cat, src, defaultWeight);
+                  changed = true;
+                }
               }
 
               // Re-wrap with `variables`
