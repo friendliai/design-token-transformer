@@ -33,10 +33,11 @@ jobs:
         #      wrapper -- we re-wrap it here.
         #   2. Renamed `font` to `typography`, restructured by semantic
         #      category, and introduced weight variants (regular/medium/semibold)
-        #      for body/display/caption -- we map back to old flat keys.
-        # Default-weight mapping is data-verified against the old main:
-        #   body.{size}.regular == old typography-body-saans-{size}
-        #   display.{size}.medium == old typography-display-saans-{size}
+        #      for body/display/caption -- we flatten back into `font.<cat>`
+        #      with `typography-<cat>-<size>[-<weight>]` leaf keys.
+        # Default-weight mapping (un-suffixed leaf):
+        #   body.{size}.regular   -> typography-body-{size}
+        #   display.{size}.medium -> typography-display-{size}
         # Non-default weights are preserved with a -{weight} suffix on the key.
         env:
           TOKENS_DIR: tokens
@@ -47,20 +48,19 @@ jobs:
             const dir = process.env.TOKENS_DIR;
             const wrapKeys = ["core", "color", "layout", "radius"];
 
-            // typography category -> old "font" sub-key mapping rules.
-            // familySuffix: appended to category name and embedded in leaf key.
+            // typography category -> `font` sub-key mapping rules.
             // defaultWeight: null = flat leaf (no weight variants); otherwise
             //   the weight whose token becomes the un-suffixed default.
             const typoCats = [
-              { name: "title",   familySuffix: "-saans", defaultWeight: null      },
-              { name: "body",    familySuffix: "-saans", defaultWeight: "regular" },
-              { name: "display", familySuffix: "-saans", defaultWeight: "medium"  },
-              { name: "caption", familySuffix: "-saans", defaultWeight: null      },
-              { name: "mono",    familySuffix: "",       defaultWeight: null      },
+              { name: "title",   defaultWeight: null      },
+              { name: "body",    defaultWeight: "regular" },
+              { name: "display", defaultWeight: "medium"  },
+              { name: "caption", defaultWeight: null      },
+              { name: "mono",    defaultWeight: null      },
             ];
 
-            const leafKey = (cat, suffix, size, weight) => {
-              const base = `typography-${cat}${suffix}-${size}`;
+            const leafKey = (cat, size, weight) => {
+              const base = `typography-${cat}-${size}`;
               return weight ? `${base}-${weight}` : base;
             };
 
@@ -75,22 +75,22 @@ jobs:
                 const T = j.typography;
                 const font = {};
 
-                for (const { name: cat, familySuffix, defaultWeight } of typoCats) {
+                for (const { name: cat, defaultWeight } of typoCats) {
                   const src = T[cat];
                   if (!src || typeof src !== "object") continue;
                   const out = {};
                   for (const [size, val] of Object.entries(src)) {
                     if (!val || typeof val !== "object") continue;
                     if ("fontSize" in val) {
-                      out[leafKey(cat, familySuffix, size, null)] = val;
+                      out[leafKey(cat, size, null)] = val;
                     } else {
                       for (const [weight, tok] of Object.entries(val)) {
                         const isDefault = weight === defaultWeight;
-                        out[leafKey(cat, familySuffix, size, isDefault ? null : weight)] = tok;
+                        out[leafKey(cat, size, isDefault ? null : weight)] = tok;
                       }
                     }
                   }
-                  font[`${cat}${familySuffix}`] = out;
+                  font[cat] = out;
                 }
 
                 // x deprecated -> font["title-inter"], font["body-inter"]
