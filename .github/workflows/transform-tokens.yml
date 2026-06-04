@@ -38,6 +38,9 @@ jobs:
         #      overwrite the (incorrect) `fontWeight.value` -- Figma exports
         #      the same number across every variant of a size, so we derive
         #      the correct variable-font axis from the weight key name.
+        #   4. Newer plugin exports omit the Inter groups (`font.body-inter`,
+        #      `font.title-inter`). We restore any missing group from the
+        #      previously committed file (git HEAD) so they are not lost.
         # Every weight variant carries an explicit -{weight} suffix on the
         # emitted leaf key, including the default weight for the category:
         #   body.{size}.regular   -> typography-body-{size}-regular
@@ -51,6 +54,7 @@ jobs:
           node -e '
             const fs = require("fs");
             const path = require("path");
+            const cp = require("child_process");
             const dir = process.env.TOKENS_DIR;
             const wrapKeys = ["core", "color", "layout", "radius"];
 
@@ -185,6 +189,37 @@ jobs:
                   if (renamedAny) {
                     j.font[cat] = renamed;
                     changed = true;
+                  }
+                }
+              }
+
+              // Case 4: preserve Inter typography groups. Newer Figma plugin
+              // exports drop the `x deprecated` group, so the emitted
+              // `font["body-inter"]` / `font["title-inter"]` would disappear on
+              // each sync. The create-json step overwrote the file, but the
+              // previously committed version (git HEAD) still holds them --
+              // recover any group that is missing from the new export.
+              const INTER_GROUPS = ["body-inter", "title-inter"];
+              if (j.font && typeof j.font === "object") {
+                const missing = INTER_GROUPS.filter((g) => !(g in j.font));
+                if (missing.length) {
+                  let prevFont = null;
+                  try {
+                    const prevRaw = cp.execSync(`git show HEAD:${p}`, {
+                      encoding: "utf8",
+                      stdio: ["ignore", "pipe", "ignore"],
+                    });
+                    prevFont = (JSON.parse(prevRaw) || {}).font || null;
+                  } catch (_) {
+                    prevFont = null;
+                  }
+                  if (prevFont && typeof prevFont === "object") {
+                    for (const g of missing) {
+                      if (prevFont[g] && typeof prevFont[g] === "object") {
+                        j.font[g] = prevFont[g];
+                        changed = true;
+                      }
+                    }
                   }
                 }
               }
