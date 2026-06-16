@@ -1414,7 +1414,7 @@
       }
     }
   },
-  "font": {
+    "font": {
     "title": {
       "typography-title-3xl": {
         "fontSize": { "type": "dimension", "value": 40 },
@@ -1550,7 +1550,6 @@
         "textCase": { "type": "string", "value": "none" }
       },
       "typography-body-xl-wide-medium": {
-        "description": "for blog body",
         "fontSize": { "type": "dimension", "value": 18 },
         "textDecoration": { "type": "string", "value": "none" },
         "fontFamily": { "type": "string", "value": "Saans" },
@@ -1564,7 +1563,6 @@
         "textCase": { "type": "string", "value": "none" }
       },
       "typography-body-xl-wide-semibold": {
-        "description": "for blog body",
         "fontSize": { "type": "dimension", "value": 18 },
         "textDecoration": { "type": "string", "value": "none" },
         "fontFamily": { "type": "string", "value": "Saans" },
@@ -1670,7 +1668,6 @@
         "textCase": { "type": "string", "value": "none" }
       },
       "typography-body-md-medium": {
-        "description": "for deploy model chat",
         "fontSize": { "type": "dimension", "value": 15 },
         "textDecoration": { "type": "string", "value": "none" },
         "fontFamily": { "type": "string", "value": "Saans" },
@@ -1684,7 +1681,6 @@
         "textCase": { "type": "string", "value": "none" }
       },
       "typography-body-md-semibold": {
-        "description": "for deploy model chat",
         "fontSize": { "type": "dimension", "value": 15 },
         "textDecoration": { "type": "string", "value": "none" },
         "fontFamily": { "type": "string", "value": "Saans" },
