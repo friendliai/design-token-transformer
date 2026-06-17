@@ -4,7 +4,7 @@ This repo stores Friendli's design tokens (`tokens/*.json`) exported from Figma.
 
 ## How tokens are updated
 
-Design tokens are exported from Figma by the **Friendli Design Token Exporter** plugin, which opens a pull request against this repository with the updated `tokens/*.json` files. Review and merge the PR to publish the changes.
+Design tokens are exported from Figma by the **Friendli Design Token Exporter**(https://github.com/friendliai/friendli-design-token-exporter) plugin, which opens a pull request against this repository with the updated `tokens/*.json` files. Review and merge the PR to publish the changes.
 
 When a token PR is merged into `main`, the [`notify-web-repo`](.github/workflows/notify-web-repo.yml) workflow notifies the [`friendliai/web`](https://github.com/friendliai/web) repository to sync the latest tokens.
 
