@@ -1,4 +1,11 @@
-name: Transform tokens send from figma
+# ⚠️ DEPRECATED (2026-06-17)
+# 이 워크플로우는 더 이상 사용하지 않습니다.
+# - 토큰 export는 "Friendli Design Token Exporter"가 브랜치에 직접 PR을 생성하는
+#   방식으로 대체되었습니다 (repository_dispatch: update-tokens 경로 미사용).
+# - 파일은 이력 보존 목적으로 남겨두며, 추후 제거 예정입니다.
+# - 워크플로우는 `gh workflow disable`로 비활성화되어 있어 어떤 트리거로도 실행되지 않습니다.
+#   다시 활성화하려면 `gh workflow enable "transform-tokens.yml"` 를 실행하세요.
+name: '[DEPRECATED] Transform tokens send from figma'
 # this triggers the action when a post to "https://api.github.com/repos/:username/:repo/dispatches" comes in
 on:
   repository_dispatch:
