@@ -222,7 +222,7 @@
           },
           "brand": {
             "type": "color",
-            "value": "#2A62DBff",
+            "value": "#2a62dbff",
             "blendMode": "normal"
           }
         },
