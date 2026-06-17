@@ -1286,10 +1286,11 @@
             "base":  { "description": "danger text, text button", "type": "color", "value": "{core.color.red.500}" },
             "hover": { "description": "", "type": "color", "value": "{core.color.red.600}" },
             "press": { "description": "", "type": "color", "value": "{core.color.red.700}" }
-          }
+          },
+          "strong": { "description": "emphasized danger text", "type": "color", "value": "{core.color.red.900}" }
         },
         "success": { "default": { "base": { "description": "success text", "type": "color", "value": "{core.color.lime.600}" } } },
-        "warning": { "default": { "base": { "description": "warning text", "type": "color", "value": "{core.color.yellow.600}" } } }
+        "warning": { "default": { "base": { "description": "warning text", "type": "color", "value": "{core.color.yellow.900}" } } }
       },
       "border": {
         "neutral": {
