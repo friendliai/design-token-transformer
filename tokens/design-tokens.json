@@ -1089,17 +1089,7 @@
           "default": {
             "description": "",
             "type": "color",
-            "value": "{core.color.gray.800}",
-            "base": {
-              "description": "",
-              "type": "color",
-              "value": "{core.color.gray.800}"
-            },
-            "hover": {
-              "description": "",
-              "type": "color",
-              "value": "{core.color.gray.1000}"
-            }
+            "value": "{core.color.gray.800}"
           },
           "subtle": {
             "description": "",
@@ -1271,6 +1261,35 @@
             "value": "{core.color.blue.brand}"
           }
         }
+      },
+      "text": {
+        "neutral": {
+          "strong":  { "description": "btn, heading, title, subtitle emphasized text", "type": "color", "value": "{core.color.gray.1000}" },
+          "default": { "description": "general text", "type": "color", "value": "{core.color.gray.900}" },
+          "subtle":  { "description": "description, secondary text", "type": "color", "value": "{core.color.gray.700}" },
+          "subtler": { "description": "placeholder, meta info", "type": "color", "value": "{core.color.gray.600}" },
+          "disable": { "description": "disabled text", "type": "color", "value": "{core.color.gray.500}" }
+        },
+        "inverse": {
+          "default": { "description": "text on dark bg", "type": "color", "value": "{core.color.white}" }
+        },
+        "primary": {
+          "default": {
+            "base":  { "description": "link, text button", "type": "color", "value": "{core.color.blue.500}" },
+            "hover": { "description": "", "type": "color", "value": "{core.color.blue.600}" },
+            "press": { "description": "", "type": "color", "value": "{core.color.blue.700}" }
+          },
+          "strong": { "description": "emphasized primary text", "type": "color", "value": "{core.color.blue.900}" }
+        },
+        "danger": {
+          "default": {
+            "base":  { "description": "danger text, text button", "type": "color", "value": "{core.color.red.500}" },
+            "hover": { "description": "", "type": "color", "value": "{core.color.red.600}" },
+            "press": { "description": "", "type": "color", "value": "{core.color.red.700}" }
+          }
+        },
+        "success": { "default": { "base": { "description": "success text", "type": "color", "value": "{core.color.lime.600}" } } },
+        "warning": { "default": { "base": { "description": "warning text", "type": "color", "value": "{core.color.yellow.600}" } } }
       },
       "border": {
         "neutral": {
