@@ -1268,7 +1268,7 @@
           "default": { "description": "general text", "type": "color", "value": "{core.color.gray.900}" },
           "subtle":  { "description": "description, secondary text", "type": "color", "value": "{core.color.gray.700}" },
           "subtler": { "description": "placeholder, meta info", "type": "color", "value": "{core.color.gray.600}" },
-          "disable": { "description": "disabled text", "type": "color", "value": "{core.color.gray.500}" }
+          "disable": { "description": "disabled text", "type": "color", "value": "{core.color.gray.400}" }
         },
         "inverse": {
           "default": { "description": "text on dark bg", "type": "color", "value": "{core.color.white}" }
