@@ -1,12 +1,24 @@
 {
   "effect": {
-    "shadow-lg": {
+    "shadow-xs": {
       "description": null,
       "type": "custom-shadow",
       "value": {
         "shadowType": "dropShadow",
-        "radius": 40,
-        "color": "#0000004d",
+        "radius": 2,
+        "color": "#0000000a",
+        "offsetX": 0,
+        "offsetY": 2,
+        "spread": 0
+      }
+    },
+    "shadow-sm": {
+      "description": null,
+      "type": "custom-shadow",
+      "value": {
+        "shadowType": "dropShadow",
+        "radius": 10,
+        "color": "#00000026",
         "offsetX": 0,
         "offsetY": 0,
         "spread": 0
@@ -24,13 +36,13 @@
         "spread": 0
       }
     },
-    "shadow-sm": {
+    "shadow-lg": {
       "description": null,
       "type": "custom-shadow",
       "value": {
         "shadowType": "dropShadow",
-        "radius": 10,
-        "color": "#00000080",
+        "radius": 40,
+        "color": "#0000004d",
         "offsetX": 0,
         "offsetY": 0,
         "spread": 0
@@ -42,57 +54,9 @@
       "value": {
         "shadowType": "dropShadow",
         "radius": 10,
-        "color": "#0000001a",
+        "color": "#00000026",
         "offsetX": 0,
         "offsetY": 0,
-        "spread": 0
-      }
-    },
-    "shadow-sm-bottom": {
-      "description": null,
-      "type": "custom-shadow",
-      "value": {
-        "shadowType": "dropShadow",
-        "radius": 20,
-        "color": "#00000014",
-        "offsetX": 0,
-        "offsetY": 5,
-        "spread": 0
-      }
-    },
-    "shadow-xs": {
-      "description": null,
-      "type": "custom-shadow",
-      "value": {
-        "shadowType": "dropShadow",
-        "radius": 2,
-        "color": "#0000000a",
-        "offsetX": 0,
-        "offsetY": 2,
-        "spread": 0
-      }
-    },
-    "toggle-shadow-right": {
-      "description": "For on toggle",
-      "type": "custom-shadow",
-      "value": {
-        "shadowType": "dropShadow",
-        "radius": 2,
-        "color": "#00000040",
-        "offsetX": -1,
-        "offsetY": 1,
-        "spread": 0
-      }
-    },
-    "toggle-shadow-left": {
-      "description": "For off toggle",
-      "type": "custom-shadow",
-      "value": {
-        "shadowType": "dropShadow",
-        "radius": 2,
-        "color": "#00000040",
-        "offsetX": 1,
-        "offsetY": 1,
         "spread": 0
       }
     },
@@ -102,7 +66,7 @@
       "value": {
         "shadowType": "dropShadow",
         "radius": 3,
-        "color": "#00000014",
+        "color": "#00000026",
         "offsetX": 2,
         "offsetY": 2,
         "spread": 0
@@ -1338,6 +1302,23 @@
             "type": "color",
             "value": "{core.color.red.500}"
           }
+        }
+      },
+      "shadow": {
+        "weak": {
+          "type": "color",
+          "value": "#0000000a",
+          "blendMode": "normal"
+        },
+        "base": {
+          "type": "color",
+          "value": "#00000026",
+          "blendMode": "normal"
+        },
+        "strong": {
+          "type": "color",
+          "value": "#0000004d",
+          "blendMode": "normal"
         }
       }
     },
