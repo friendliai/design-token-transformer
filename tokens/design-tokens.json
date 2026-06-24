@@ -47,30 +47,6 @@
         "offsetY": 0,
         "spread": 0
       }
-    },
-    "shadow-sm-lighter": {
-      "description": null,
-      "type": "custom-shadow",
-      "value": {
-        "shadowType": "dropShadow",
-        "radius": 10,
-        "color": "#00000026",
-        "offsetX": 0,
-        "offsetY": 0,
-        "spread": 0
-      }
-    },
-    "toast-shadow": {
-      "description": null,
-      "type": "custom-shadow",
-      "value": {
-        "shadowType": "dropShadow",
-        "radius": 3,
-        "color": "#00000026",
-        "offsetX": 2,
-        "offsetY": 2,
-        "spread": 0
-      }
     }
   },
   "variables": {
